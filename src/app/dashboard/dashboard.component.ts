@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { CompanySchema } from '../classDefinition';
+import { DashboardService } from './dashboard.service';
 
 @Component({
   selector: 'my-dashboard',
@@ -10,20 +10,19 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  heroes: Hero[] = [];
+  companyList: CompanySchema[] = [];
+  applicationType: string[] = ['Recruiters', 'Direct'];
 
   constructor(
     private router: Router,
-    private heroService: HeroService) {
+    private dashboardService: DashboardService) {
   }
 
   ngOnInit(): void {
-    this.heroService.getHeroes()
-      .then(heroes => this.heroes = heroes.slice(1, 5));
+    this.dashboardService.getCompanyList()
+      .then(companyList => {
+        this.companyList = companyList;
+      });
   }
 
-  gotoDetail(hero: Hero): void {
-    const link = ['/detail', hero.id];
-    this.router.navigate(link);
-  }
 }

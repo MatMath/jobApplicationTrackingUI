@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Hero } from '../hero';
+import { Hero } from '../classDefinition';
 import { HeroService } from '../hero.service';
 
 @Component({
@@ -41,5 +41,5 @@ export class AnalyticComponent implements OnInit {
   ngOnInit(): void {
     this.getHeroes();
   }
-  
+
 }

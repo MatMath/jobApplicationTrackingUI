@@ -3,7 +3,7 @@ import { Headers, Http, Response } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Hero } from './hero';
+import { Hero } from './classDefinition';
 
 @Injectable()
 export class HeroService {
@@ -19,11 +19,6 @@ export class HeroService {
         return response.json().data as Hero[];
       })
       .catch(this.handleError);
-  }
-
-  getHero(id: number): Promise<Hero> {
-    return this.getHeroes()
-      .then(heroes => heroes.find(hero => hero.id === id));
   }
 
   save(hero: Hero): Promise<Hero> {
