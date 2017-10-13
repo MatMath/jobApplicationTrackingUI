@@ -9,8 +9,8 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeroService } from './hero.service';
-import { DashboardComponent } from './dashboard.component';
-import { HeroesComponent } from './heroes.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AnalyticComponent } from './analytic/analytic.component';
 
 @NgModule({
   imports: [
@@ -23,7 +23,7 @@ import { HeroesComponent } from './heroes.component';
   declarations: [
     AppComponent,
     DashboardComponent,
-    HeroesComponent,
+    AnalyticComponent,
   ],
   providers: [HeroService],
   bootstrap: [AppComponent]

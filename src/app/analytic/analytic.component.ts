@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Hero } from './hero';
-import { HeroService } from './hero.service';
+import { Hero } from '../hero';
+import { HeroService } from '../hero.service';
 
 @Component({
-  selector: 'my-heroes',
-  templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css']
+  selector: 'my-analytic',
+  templateUrl: './analytic.component.html',
+  styleUrls: ['./analytic.component.css']
 })
-export class HeroesComponent implements OnInit {
+export class AnalyticComponent implements OnInit {
   heroes: Hero[];
   selectedHero: Hero;
   addingHero = false;
@@ -27,16 +27,6 @@ export class HeroesComponent implements OnInit {
       .catch(error => this.error = error);
   }
 
-  addHero(): void {
-    this.addingHero = true;
-    this.selectedHero = null;
-  }
-
-  close(savedHero: Hero): void {
-    this.addingHero = false;
-    if (savedHero) { this.getHeroes(); }
-  }
-
   deleteHero(hero: Hero, event: any): void {
     event.stopPropagation();
     this.heroService
@@ -51,13 +41,5 @@ export class HeroesComponent implements OnInit {
   ngOnInit(): void {
     this.getHeroes();
   }
-
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    this.addingHero = false;
-  }
-
-  gotoDetail(): void {
-    this.router.navigate(['/detail', this.selectedHero.id]);
-  }
+  
 }
