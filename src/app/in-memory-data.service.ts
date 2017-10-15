@@ -34,7 +34,7 @@ export class InMemoryDataService {
       link: '',
     }]
 
-    const recruitersList = [
+    const recruiterslist = [
       { cie: 'Recru 1', name: 'Name 1' },
       { cie: 'recru 2', name: 'Name 2' }
     ];
@@ -68,6 +68,7 @@ export class InMemoryDataService {
       heroes,
       globalStructure,
       meetingInfo,
+      recruiterslist,
     };
   }
 }

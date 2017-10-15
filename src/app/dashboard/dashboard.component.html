@@ -5,6 +5,44 @@
 
   <form (ngSubmit)="onSubmit()" #newApplication="ngForm">
     <div class="form-group">
+      <label for="company">Select Company</label>
+      <select class="form-control" id="company"
+              required
+              [(ngModel)]="base.company" name="company"
+              #company="ngModel">
+        <option *ngFor="let cie of companyList" [value]="cie">{{cie.name}}</option>
+      </select>
+      <div [hidden]="company.valid || company.pristine" class="alert alert-danger"> Company is required </div>
+    </div>
+
+    <div class="form-group">
+      <label for="recruiters">Select Recruiters</label>
+      <select class="form-control" id="recruiters"
+              [(ngModel)]="base.recruiters" name="recruiters"
+              #recruiters="ngModel">
+        <option *ngFor="let recru of RecrutersList" [value]="recru.cie">{{recru.cie}} - {{recru.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title"
+             required
+             [(ngModel)]="base.title" name="title"
+             #title="ngModel">
+      <div [hidden]="title.valid || title.pristine" class="alert alert-danger"> Title is required </div>
+    </div>
+
+    <div class="form-group">
+      <label for="website">Select Website</label>
+      <select class="form-control" id="website"
+              [(ngModel)]="base.website" name="website"
+              #recruiters="ngModel">
+        <option *ngFor="let list of websiteList" [value]="list">{{list}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
       <label for="name">Location</label>
       <input type="text" class="form-control" id="location"
              required
@@ -14,20 +52,43 @@
     </div>
 
     <div class="form-group">
-      <label for="title">Title</label>
-      <input type="text" class="form-control" id="title"
-             [(ngModel)]="base.title" name="title">
+      <label for="name">Description</label>
+      <input type="text" class="form-control" id="description"
+             [(ngModel)]="base.description" name="description">
+    </div>
+
+    <div>
+      <label for="name">Date Picker</label>
+      <input type="date" class="form-control" id="dateStr"
+             [(ngModel)]="base.dateStr" name="dateStr">
     </div>
 
     <div class="form-group">
-      <label for="company">Select Company</label>
-      <select class="form-control" id="company"
-              required
-              [(ngModel)]="base.company" name="company"
-              #company="ngModel">
-        <option *ngFor="let cie of companyList" [value]="cie">{{cie.name}}</option>
-      </select>
-      <div [hidden]="company.valid || company.pristine" class="alert alert-danger"> Power is required </div>
+      <label for="name">Did you apply</label>
+      <input type="radio" class="form-control" id="application"
+             [(ngModel)]="base.application" name="application">
+      <span>Note: This is mainly if we have a recruters proposing different cie.</span>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Received an answer</label>
+      <input type="radio" class="form-control" id="answer_receive"
+             [(ngModel)]="base.answer_receive" name="answer_receive">
+    </div>
+
+    <div>
+      <span>Add Meeting Menu here... probably as a sub component.</span>
+    </div>
+
+    <div class="form-group">
+      <label for="notes">Notes</label>
+      <textarea rows="5" [(ngModel)]="base.notes" name="notes"> {{base.notes}}</textarea>
+    </div>
+
+    <div>
+      <label for="cover">Cover letter URL</label>
+      <input type="colver_letter" class="form-control" id="colver_letter"
+             [(ngModel)]="base.colver_letter" name="colver_letter">
     </div>
 
     <button type="submit" class="btn btn-success" [disabled]="!newApplication.form.valid">Submit</button>

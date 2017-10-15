@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CompanySchema, globalStructureSchema } from '../classDefinition';
+import { CompanySchema, globalStructureSchema, RecruitersInfoSchema } from '../classDefinition';
 import { DashboardService } from './dashboard.service';
 
 @Component({
@@ -11,7 +11,9 @@ import { DashboardService } from './dashboard.service';
 })
 export class DashboardComponent implements OnInit {
   companyList: CompanySchema[] = [];
+  RecrutersList: RecruitersInfoSchema[] = [];
   applicationType: string[] = ['Recruiters', 'Direct'];
+  websiteList: string[] = ['Indeed', 'Linkedin', 'ZipRecruters'];
   base: globalStructureSchema = {
     location: '',
     website: '',
@@ -20,6 +22,7 @@ export class DashboardComponent implements OnInit {
     company: '',
     title: '',
     description: '',
+    dateStr: '',
     date: 0,
     application: false,
     answer_receive: false,
@@ -38,6 +41,10 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.getCompanyList()
       .then(companyList => {
         this.companyList = companyList;
+      });
+    this.dashboardService.getRecrutersList()
+      .then(list => {
+        this.RecrutersList = list;
       });
   }
 
