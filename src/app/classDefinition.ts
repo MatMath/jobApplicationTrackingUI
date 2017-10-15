@@ -26,3 +26,19 @@ export class MeetinXgInfoSchema {
   challenge: string
   notes: string
 };
+
+export class globalStructureSchema {
+  location: string;
+  website: string;
+  applicationType: string;
+  title: string;
+  recruiters: any; // TODO find why it is always undefined if I link them
+  company: any; // TODO find why it is always undefined if I link them
+  description: string;
+  date: number;
+  application: boolean;
+  answer_receive: boolean;
+  meeting: any[]; // TODO find why it is always undefined if I link them
+  notes: string;
+  cover_letter: string;
+};
