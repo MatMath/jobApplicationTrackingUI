@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
   websiteList: string[] = ['', 'Indeed', 'Linkedin', 'ZipRecruters'];
   typeOfPosition: string[] = ['Front End Eng', 'NodeJs Eng', 'Senior Front-end', 'Senior Backend', 'Fullstack', 'Senior Fullstack'];
   base: globalStructureSchema = {
+    id: undefined,
     location: '',
     website: '',
     applicationType: '',
@@ -60,9 +61,11 @@ export class DashboardComponent implements OnInit {
       .map(term => term.length < 1 ? []
         : this.typeOfPosition.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
 
-
   onSubmit() {
     // Convert data and Post it.
+    this.dashboardService.saveJob(this.base).then(answer => {
+      this.submitted = true;
+    });
   }
 
 }

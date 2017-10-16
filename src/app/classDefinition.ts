@@ -28,6 +28,7 @@ export class MeetinXgInfoSchema {
 };
 
 export class globalStructureSchema {
+  id: string;
   location: string;
   website: string;
   applicationType: string;

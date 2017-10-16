@@ -1,6 +1,5 @@
 <h3>New application</h3>
 <div class="grid grid-pad">
-  Fill the form:
   <form (ngSubmit)="onSubmit()" #newApplication="ngForm">
     <div class="form-group row">
       <label class="col-2 col-form-label" for="company">Select Company</label>
@@ -66,15 +65,23 @@
 
     <div class="form-group row">
       <label class="col-2 col-form-label" for="name">Did you apply</label>
-      <input type="radio" class="form-control col-2" id="application"
-             [(ngModel)]="base.application" name="application">
-      <span class="col-8">Note: This is mainly if we have a recruters proposing different cie.</span>
+      <div class="btn-group col-3" ngbRadioGroup name="apply" [(ngModel)]="base.application">
+        <label ngbButtonLabel class="btn btn-secondary" [ngClass]="{'btn-success': base.application}">
+          <input ngbButton type="radio" [value]="true"> Yes
+        </label>
+        <label ngbButtonLabel class="btn btn-secondary" [ngClass]="{'btn-danger': !base.application}"> <input ngbButton type="radio" [value]="false"> No </label>
+      </div>
+      <span class="col-7">Note: This is mainly if we have a recruters proposing different cie.</span>
     </div>
 
     <div class="form-group row" *ngIf='base.application'>
       <label class="col-2 col-form-label" for="name">Received an answer</label>
-      <input type="radio" class="form-control col-10" id="answer_receive"
-             [(ngModel)]="base.answer_receive" name="answer_receive">
+      <div class="btn-group col-3" ngbRadioGroup name="apply" [(ngModel)]="base.answer_receive">
+        <label ngbButtonLabel class="btn btn-secondary" [ngClass]="{'btn-success': base.answer_receive}">
+          <input ngbButton type="radio" [value]="true"> Yes
+        </label>
+        <label ngbButtonLabel class="btn btn-secondary" [ngClass]="{'btn-danger': !base.answer_receive}"> <input ngbButton type="radio" [value]="false"> No </label>
+      </div>
     </div>
 
     <div>
@@ -92,7 +99,9 @@
              [(ngModel)]="base.colver_letter" name="colver_letter">
     </div>
 
-    <button type="submit" class="btn btn-success" [disabled]="!newApplication.form.valid">Submit</button>
+    <div class="row">
+      <button type="submit" class="btn btn-success" [disabled]="!newApplication.form.valid">Submit</button>
+    </div>
 
   </form>
 
