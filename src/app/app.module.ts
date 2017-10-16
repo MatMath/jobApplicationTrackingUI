@@ -9,7 +9,6 @@ import { InMemoryDataService } from './in-memory-data.service';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HeroService } from './hero.service';
 
 import { DashboardService } from './dashboard/dashboard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -30,7 +29,7 @@ import { AnalyticComponent } from './analytic/analytic.component';
     DashboardComponent,
     AnalyticComponent,
   ],
-  providers: [HeroService, DashboardService],
+  providers: [DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
