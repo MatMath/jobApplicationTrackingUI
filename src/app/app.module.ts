@@ -14,6 +14,7 @@ import { DashboardService } from './dashboard/dashboard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { AnalyticComponent } from './analytic/analytic.component';
+import { AnalyticService } from './analytic/analytic.service';
 
 @NgModule({
   imports: [
@@ -29,7 +30,7 @@ import { AnalyticComponent } from './analytic/analytic.component';
     DashboardComponent,
     AnalyticComponent,
   ],
-  providers: [DashboardService],
+  providers: [DashboardService, AnalyticService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

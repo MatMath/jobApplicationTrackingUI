@@ -51,11 +51,17 @@ export class InMemoryDataService {
       cover_letter: '',
     };
 
+    const joblist = [
+      {...globalStructure, location: 'Dublin', title: 'FullStack'},
+      {...globalStructure, location: 'Dublin South', title: 'Front-end Dev'}
+    ];
+
     return {
       cie,
       globalStructure,
       meetingInfo,
       recruiterslist,
+      joblist,
     };
   }
 }

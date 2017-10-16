@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Hero } from '../classDefinition';
+import { globalStructureSchema } from '../classDefinition';
+import { AnalyticService } from './analytic.service';
 
 @Component({
   selector: 'my-analytic',
@@ -9,12 +10,20 @@ import { Hero } from '../classDefinition';
   styleUrls: ['./analytic.component.css']
 })
 export class AnalyticComponent implements OnInit {
+  jobList: globalStructureSchema[];
   error: any;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private analyticService: AnalyticService
   ) { }
 
-  ngOnInit(): void { }
+
+  ngOnInit(): void {
+    this.analyticService.getJobList()
+    .then((data) => {
+      this.jobList = data;
+    });
+  }
 
 }
