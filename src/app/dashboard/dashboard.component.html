@@ -28,6 +28,7 @@
       <label class="col-2 col-form-label" for="title col-xs-2">Title</label>
       <input type="text" class="form-control col-10" id="title"
              required
+             [ngbTypeahead]="listPosition"
              [(ngModel)]="base.title" name="title"
              #title="ngModel">
       <div [hidden]="title.valid || title.pristine" class="alert alert-danger"> Title is required </div>
@@ -70,7 +71,7 @@
       <span class="col-8">Note: This is mainly if we have a recruters proposing different cie.</span>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row" *ngIf='base.application'>
       <label class="col-2 col-form-label" for="name">Received an answer</label>
       <input type="radio" class="form-control col-10" id="answer_receive"
              [(ngModel)]="base.answer_receive" name="answer_receive">
