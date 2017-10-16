@@ -1,11 +1,10 @@
 <h3>New application</h3>
 <div class="grid grid-pad">
   Fill the form:
-  <ngb-progressbar type="success" [value]="25"></ngb-progressbar>
   <form (ngSubmit)="onSubmit()" #newApplication="ngForm">
-    <div class="form-group">
-      <label for="company">Select Company</label>
-      <select class="form-control" id="company"
+    <div class="form-group row">
+      <label class="col-2 col-form-label" for="company">Select Company</label>
+      <select class="form-control col-10" id="company"
               required
               [(ngModel)]="base.company" name="company"
               #company="ngModel">
@@ -15,9 +14,9 @@
       <div [hidden]="company.valid || company.pristine" class="alert alert-danger"> Company is required </div>
     </div>
 
-    <div class="form-group">
-      <label for="recruiters">Select Recruiters</label>
-      <select class="form-control" id="recruiters"
+    <div class="form-group row">
+      <label class="col-2 col-form-label" for="recruiters">Select Recruiters</label>
+      <select class="form-control col-10" id="recruiters"
               [(ngModel)]="base.recruiters" name="recruiters"
               #recruiters="ngModel">
         <option [value]=""></option>
@@ -25,55 +24,55 @@
       </select>
     </div>
 
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input type="text" class="form-control" id="title"
+    <div class="form-group row">
+      <label class="col-2 col-form-label" for="title col-xs-2">Title</label>
+      <input type="text" class="form-control col-10" id="title"
              required
              [(ngModel)]="base.title" name="title"
              #title="ngModel">
       <div [hidden]="title.valid || title.pristine" class="alert alert-danger"> Title is required </div>
     </div>
 
-    <div class="form-group">
-      <label for="website">Select Website</label>
-      <select class="form-control" id="website"
+    <div class="form-group row">
+      <label class="col-2 col-form-label" for="website">Select Website</label>
+      <select class="form-control col-10" id="website"
               [(ngModel)]="base.website" name="website"
               #recruiters="ngModel">
         <option *ngFor="let list of websiteList" [value]="list">{{list}}</option>
       </select>
     </div>
 
-    <div class="form-group">
-      <label for="name">Location</label>
-      <input type="text" class="form-control" id="location"
+    <div class="form-group row">
+      <label class="col-2 col-form-label" for="name">Location</label>
+      <input type="text" class="form-control col-10" id="location"
              required
              [(ngModel)]="base.location" name="location"
              #location="ngModel">
       <div [hidden]="location.valid || location.pristine" class="alert alert-danger"> Name is required </div>
     </div>
 
-    <div class="form-group">
-      <label for="name">Description</label>
-      <input type="text" class="form-control" id="description"
+    <div class="form-group row">
+      <label class="col-2 col-form-label" for="name">Description</label>
+      <input type="text" class="form-control col-10" id="description"
              [(ngModel)]="base.description" name="description">
     </div>
 
-    <div>
-      <label for="name">Date Picker</label>
-      <input type="date" class="form-control" id="date"
+    <div class="form-group row">
+      <label class="col-2 col-form-label" for="name">Date Picker</label>
+      <input type="date" class="form-control col-10" id="date"
              [(ngModel)]="base.date" name="date">
     </div>
 
-    <div class="form-group">
-      <label for="name">Did you apply</label>
-      <input type="radio" class="form-control" id="application"
+    <div class="form-group row">
+      <label class="col-2 col-form-label" for="name">Did you apply</label>
+      <input type="radio" class="form-control col-2" id="application"
              [(ngModel)]="base.application" name="application">
-      <span>Note: This is mainly if we have a recruters proposing different cie.</span>
+      <span class="col-8">Note: This is mainly if we have a recruters proposing different cie.</span>
     </div>
 
-    <div class="form-group">
-      <label for="name">Received an answer</label>
-      <input type="radio" class="form-control" id="answer_receive"
+    <div class="form-group row">
+      <label class="col-2 col-form-label" for="name">Received an answer</label>
+      <input type="radio" class="form-control col-10" id="answer_receive"
              [(ngModel)]="base.answer_receive" name="answer_receive">
     </div>
 
@@ -81,14 +80,14 @@
       <span>Add Meeting Menu here... probably as a sub component.</span>
     </div>
 
-    <div class="form-group">
-      <label for="notes">Notes</label>
+    <div class="form-group row">
+      <label class="col-2 col-form-label" for="notes">Notes</label>
       <textarea rows="5" [(ngModel)]="base.notes" name="notes"> {{base.notes}}</textarea>
     </div>
 
-    <div>
-      <label for="cover">Cover letter URL</label>
-      <input type="colver_letter" class="form-control" id="colver_letter"
+    <div class="form-group row">
+      <label class="col-2 col-form-label" for="cover">Cover letter URL</label>
+      <input type="colver_letter" class="form-control col-10" id="colver_letter"
              [(ngModel)]="base.colver_letter" name="colver_letter">
     </div>
 
