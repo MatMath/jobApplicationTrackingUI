@@ -1,8 +1,7 @@
 <h3>New application</h3>
 <div class="grid grid-pad">
   Fill the form:
-  <li *ngFor="let cie of companyList"> {{ cie.name }} - {{ cie.location }} </li>
-
+  <ngb-progressbar type="success" [value]="25"></ngb-progressbar>
   <form (ngSubmit)="onSubmit()" #newApplication="ngForm">
     <div class="form-group">
       <label for="company">Select Company</label>
@@ -10,6 +9,7 @@
               required
               [(ngModel)]="base.company" name="company"
               #company="ngModel">
+        <option [value]=""></option>
         <option *ngFor="let cie of companyList" [value]="cie">{{cie.name}}</option>
       </select>
       <div [hidden]="company.valid || company.pristine" class="alert alert-danger"> Company is required </div>
@@ -20,6 +20,7 @@
       <select class="form-control" id="recruiters"
               [(ngModel)]="base.recruiters" name="recruiters"
               #recruiters="ngModel">
+        <option [value]=""></option>
         <option *ngFor="let recru of RecrutersList" [value]="recru.cie">{{recru.cie}} - {{recru.name}}</option>
       </select>
     </div>
@@ -59,8 +60,8 @@
 
     <div>
       <label for="name">Date Picker</label>
-      <input type="date" class="form-control" id="dateStr"
-             [(ngModel)]="base.dateStr" name="dateStr">
+      <input type="date" class="form-control" id="date"
+             [(ngModel)]="base.date" name="date">
     </div>
 
     <div class="form-group">
@@ -94,4 +95,5 @@
     <button type="submit" class="btn btn-success" [disabled]="!newApplication.form.valid">Submit</button>
 
   </form>
+
 </div>

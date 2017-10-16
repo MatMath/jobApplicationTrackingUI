@@ -35,8 +35,7 @@ export class globalStructureSchema {
   recruiters: any; // TODO find why it is always undefined if I link them
   company: any; // TODO find why it is always undefined if I link them
   description: string;
-  dateStr: string;
-  date: number; // Converted number.
+  date: Date; // Converted number.
   application: boolean;
   answer_receive: boolean;
   meeting: any[]; // TODO find why it is always undefined if I link them

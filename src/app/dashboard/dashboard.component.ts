@@ -22,8 +22,7 @@ export class DashboardComponent implements OnInit {
     company: '',
     title: '',
     description: '',
-    dateStr: '',
-    date: 0,
+    date: undefined,
     application: false,
     answer_receive: false,
     meeting: [],
@@ -48,6 +47,8 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  onSubmit() { this.submitted = true; }
+  onSubmit() {
+    // Convert data and Post it.
+  }
 
 }
