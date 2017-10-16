@@ -7,7 +7,11 @@ import { globalStructureSchema } from '../classDefinition';
 
 @Injectable()
 export class AnalyticService {
-  private jobUrl = 'app/joblist';
+  private baseUrl:string = 'http://localhost:3001';
+  private jobUrl = `${this.baseUrl}/list`;
+  // private headers = new Headers({
+  //   'Content-Type': 'application/json',
+  // });
 
   constructor(private http: Http) { }
 
@@ -16,7 +20,7 @@ export class AnalyticService {
       .get(this.jobUrl)
       .toPromise()
       .then((response) => {
-        return response.json().data as globalStructureSchema[];
+        return response.json() as globalStructureSchema[];
       })
       .catch(this.handleError);
   }

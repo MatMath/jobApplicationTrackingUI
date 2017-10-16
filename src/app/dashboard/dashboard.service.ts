@@ -7,9 +7,14 @@ import { CompanySchema, RecruitersInfoSchema, globalStructureSchema } from '../c
 
 @Injectable()
 export class DashboardService {
-  private cieUrl = 'app/cie';  // URL to web api
-  private recruitersUrl = 'app/recruiterslist';
-  private jobUrl = 'app/joblist';
+  private baseUrl:string = 'http://localhost:3001';
+  private cieUrl = `${this.baseUrl}/cie`;  // URL to web api
+  private recruitersUrl = `${this.baseUrl}/recruiters`;
+  private jobUrl = `${this.baseUrl}/list`;
+  private headers = new Headers({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': true,
+  });
 
   constructor(private http: Http) { }
 
@@ -18,7 +23,7 @@ export class DashboardService {
       .get(this.cieUrl)
       .toPromise()
       .then((response) => {
-        return response.json().data as CompanySchema[];
+        return response.json() as CompanySchema[];
       })
       .catch(this.handleError);
   }
@@ -28,7 +33,7 @@ export class DashboardService {
       .get(this.recruitersUrl)
       .toPromise()
       .then((response) => {
-        return response.json().data as RecruitersInfoSchema[];
+        return response.json() as RecruitersInfoSchema[];
       })
       .catch(this.handleError);
   }
@@ -42,25 +47,19 @@ export class DashboardService {
 
   // Add new Hero
   private postJob(job: globalStructureSchema): Promise<globalStructureSchema> {
-    const headers = new Headers({
-      'Content-Type': 'application/json'
-    });
     return this.http
-      .post(this.jobUrl, JSON.stringify(job), { headers: headers })
+      .post(this.jobUrl, JSON.stringify(job), { headers: this.headers })
       .toPromise()
-      .then(res => res.json().data)
+      .then(res => res.json())
       .catch(this.handleError);
   }
 
   // Update existing Job
   private putJob(job: globalStructureSchema): Promise<globalStructureSchema> {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
     const url = `${this.jobUrl}/${job.id}`;
 
     return this.http
-      .put(url, JSON.stringify(job), { headers: headers })
+      .put(url, JSON.stringify(job), { headers: this.headers })
       .toPromise()
       .then(() => job)
       .catch(this.handleError);
