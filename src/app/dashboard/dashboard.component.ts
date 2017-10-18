@@ -17,24 +17,23 @@ import { DashboardService } from './dashboard.service';
 export class DashboardComponent implements OnInit {
   companyList: CompanySchema[] = [];
   RecrutersList: RecruitersInfoSchema[] = [];
-  applicationType: string[] = ['Recruiters', 'Direct'];
   websiteList: string[] = ['', 'Indeed', 'Linkedin', 'ZipRecruters'];
   typeOfPosition: string[] = ['Front End Eng', 'NodeJs Eng', 'Senior Front-end', 'Senior Backend', 'Fullstack', 'Senior Fullstack'];
   base: globalStructureSchema = {
     id: undefined,
-    location: '',
-    website: '',
-    applicationType: '',
-    recruiters: '',
-    company: '',
-    title: '',
-    description: '',
+    location: undefined,
+    website: undefined,
+    applicationType: undefined,
+    recruiters: undefined,
+    company: undefined,
+    title: undefined,
+    description: undefined,
     date: undefined,
     application: false,
     answer_receive: false,
     meeting: [],
-    notes: '',
-    cover_letter: '',
+    notes: undefined,
+    cover_letter: undefined,
   };
   submitted: boolean = false;
 
@@ -62,6 +61,7 @@ export class DashboardComponent implements OnInit {
         : this.typeOfPosition.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
 
   onSubmit() {
+    this.base.applicationType = (this.base.recruiters) ? 'Recruiters' : 'Direct';
     // Convert data and Post it.
     this.dashboardService.saveJob(this.base).then(answer => {
       this.submitted = true;

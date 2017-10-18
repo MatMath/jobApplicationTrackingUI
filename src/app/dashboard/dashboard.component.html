@@ -8,7 +8,7 @@
               [(ngModel)]="base.company" name="company"
               #company="ngModel">
         <option [value]=""></option>
-        <option *ngFor="let cie of companyList" [value]="cie">{{cie.name}}</option>
+        <option *ngFor="let cie of companyList" [value]="cie.name">{{cie.name}}</option>
       </select>
       <div [hidden]="company.valid || company.pristine" class="alert alert-danger"> Company is required </div>
     </div>
