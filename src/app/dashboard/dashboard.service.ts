@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -11,19 +11,15 @@ export class DashboardService {
   private cieUrl = `${this.baseUrl}/cie`;  // URL to web api
   private recruitersUrl = `${this.baseUrl}/recruiters`;
   private jobUrl = `${this.baseUrl}/list`;
-  private headers = new Headers({
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': true,
-  });
 
-  constructor(private http: Http) { }
+  constructor( private http: HttpClient ) { }
 
   getCompanyList(): Promise<Array<CompanySchema>> {
     return this.http
       .get(this.cieUrl)
       .toPromise()
       .then((response) => {
-        return response.json() as CompanySchema[];
+        return response as CompanySchema[];
       })
       .catch(this.handleError);
   }
@@ -33,7 +29,7 @@ export class DashboardService {
       .get(this.recruitersUrl)
       .toPromise()
       .then((response) => {
-        return response.json() as RecruitersInfoSchema[];
+        return response as RecruitersInfoSchema[];
       })
       .catch(this.handleError);
   }
@@ -47,19 +43,20 @@ export class DashboardService {
 
   // Add new Hero
   private postJob(job: globalStructureSchema): Promise<globalStructureSchema> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
     return this.http
-      .post(this.jobUrl, JSON.stringify(job), { headers: this.headers })
+      .post(this.jobUrl, job)
       .toPromise()
-      .then(res => res.json())
+      .then(res => res)
       .catch(this.handleError);
   }
 
   // Update existing Job
   private putJob(job: globalStructureSchema): Promise<globalStructureSchema> {
     const url = `${this.jobUrl}/${job.id}`;
-
     return this.http
-      .put(url, JSON.stringify(job), { headers: this.headers })
+      .put(url, job)
       .toPromise()
       .then(() => job)
       .catch(this.handleError);

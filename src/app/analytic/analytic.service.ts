@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -13,14 +13,14 @@ export class AnalyticService {
   //   'Content-Type': 'application/json',
   // });
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getJobList(): Promise<Array<globalStructureSchema>> {
     return this.http
       .get(this.jobUrl)
       .toPromise()
       .then((response) => {
-        return response.json() as globalStructureSchema[];
+        return response as globalStructureSchema[];
       })
       .catch(this.handleError);
   }
