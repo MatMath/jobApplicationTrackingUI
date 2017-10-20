@@ -35,7 +35,7 @@ export class DashboardService {
   }
 
   saveJob(job: globalStructureSchema): Promise<globalStructureSchema> {
-    if (job.id) {
+    if (job._id) {
       return this.putJob(job);
     }
     return this.postJob(job);
@@ -54,7 +54,7 @@ export class DashboardService {
 
   // Update existing Job
   private putJob(job: globalStructureSchema): Promise<globalStructureSchema> {
-    const url = `${this.jobUrl}/${job.id}`;
+    const url = `${this.jobUrl}/${job._id}`;
     return this.http
       .put(url, job)
       .toPromise()

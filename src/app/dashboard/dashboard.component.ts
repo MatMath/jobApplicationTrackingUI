@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   websiteList: string[] = ['', 'Indeed', 'Linkedin', 'ZipRecruters'];
   typeOfPosition: string[] = ['Front End Eng', 'NodeJs Eng', 'Senior Front-end', 'Senior Backend', 'Fullstack', 'Senior Fullstack'];
   base: globalStructureSchema = {
-    id: undefined,
+    _id: undefined,
     location: undefined,
     website: undefined,
     applicationType: undefined,

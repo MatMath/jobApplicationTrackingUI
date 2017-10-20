@@ -19,13 +19,15 @@ export class AnalyticComponent implements OnInit {
   ) { }
 
   deleteThisId(id:string): void {
-    console.log('Deleting This id!!! ', id);
     this.analyticService.deleteListId(id)
     .then((data) => {
       console.log('RETURNED:', data);
+      this.jobList = this.removeIdFromList(this.jobList, id);
       //Pop the ID from the Object instead of doing a call.
     });
   }
+
+  private removeIdFromList = (list:globalStructureSchema[], id:string):globalStructureSchema[] => list.filter(item => (item._id !== id))
 
   ngOnInit(): void {
     this.analyticService.getJobList()
