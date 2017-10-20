@@ -9,9 +9,6 @@ import { globalStructureSchema } from '../classDefinition';
 export class AnalyticService {
   private baseUrl:string = 'http://localhost:3001';
   private jobUrl = `${this.baseUrl}/list`;
-  // private headers = new Headers({
-  //   'Content-Type': 'application/json',
-  // });
 
   constructor(private http: HttpClient) { }
 
@@ -21,6 +18,17 @@ export class AnalyticService {
       .toPromise()
       .then((response) => {
         return response as globalStructureSchema[];
+      })
+      .catch(this.handleError);
+  }
+
+  deleteListId(id:string): Promise<Array<globalStructureSchema>> {
+    const tmpUrl = `${this.jobUrl}/${id}`
+    return this.http
+      .delete(tmpUrl)
+      .toPromise()
+      .then((response) => {
+        return response as any; // Dont really care as long as it is not an error.
       })
       .catch(this.handleError);
   }

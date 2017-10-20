@@ -18,6 +18,14 @@ export class AnalyticComponent implements OnInit {
     private analyticService: AnalyticService
   ) { }
 
+  deleteThisId(id:string): void {
+    console.log('Deleting This id!!! ', id);
+    this.analyticService.deleteListId(id)
+    .then((data) => {
+      console.log('RETURNED:', data);
+      //Pop the ID from the Object instead of doing a call.
+    });
+  }
 
   ngOnInit(): void {
     this.analyticService.getJobList()
