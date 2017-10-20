@@ -15,7 +15,7 @@
   <div class="row" *ngFor="let job of jobList">
     <div class="col-2">
       <button class="btn btn-danger" (click)="deleteThisId(job._id)">Delete</button>
-      <button class="btn btn-info">Edit</button>
+      <button class="btn btn-info" (click)="goToEditJobDetails(job._id)">Edit</button>
     </div>
     <div class="col-2"> {{job.company}} </div>
     <div class="col-2"> {{job.recruiters}} </div>

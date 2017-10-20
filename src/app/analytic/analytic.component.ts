@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, Routes } from '@angular/router';
 
 import { globalStructureSchema } from '../classDefinition';
 import { AnalyticService } from './analytic.service';
@@ -21,10 +21,13 @@ export class AnalyticComponent implements OnInit {
   deleteThisId(id:string): void {
     this.analyticService.deleteListId(id)
     .then((data) => {
-      console.log('RETURNED:', data);
       this.jobList = this.removeIdFromList(this.jobList, id);
       //Pop the ID from the Object instead of doing a call.
     });
+  }
+
+  goToEditJobDetails(id) {
+    this.router.navigate(['/dashboard', id]);
   }
 
   private removeIdFromList = (list:globalStructureSchema[], id:string):globalStructureSchema[] => list.filter(item => (item._id !== id))

@@ -34,6 +34,17 @@ export class DashboardService {
       .catch(this.handleError);
   }
 
+  getJobId(id:string): Promise<globalStructureSchema> {
+    return this.http
+      .get(this.jobUrl, id)
+      .toPromise()
+      .then((response) => {
+        console.log('RESPONSE:', response);
+        return response as globalStructureSchema;
+      })
+      .catch(this.handleError);
+  }
+
   saveJob(job: globalStructureSchema): Promise<globalStructureSchema> {
     if (job._id) {
       return this.putJob(job);

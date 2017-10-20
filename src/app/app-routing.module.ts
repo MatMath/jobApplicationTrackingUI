@@ -8,6 +8,7 @@ import { AnalyticComponent } from './analytic/analytic.component';
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard/:id', component: DashboardComponent },
   { path: 'analytic', component: AnalyticComponent }
 ];
 

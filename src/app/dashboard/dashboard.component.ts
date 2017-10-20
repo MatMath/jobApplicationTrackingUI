@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -35,10 +35,13 @@ export class DashboardComponent implements OnInit {
     notes: undefined,
     cover_letter: undefined,
   };
+  id:string;
+  private sub: any;
   submitted: boolean = false;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private dashboardService: DashboardService
   ) { }
 
@@ -51,7 +54,18 @@ export class DashboardComponent implements OnInit {
       .then(list => {
         this.RecrutersList = list;
       });
+      this.sub = this.route.params.subscribe(params => {
+         this.id = params['id'];
+         if (this.id) {
+           console.log('ID IS:', this.id);
+           this.dashboardService.getJobId(this.id)
+             .then(data => {
+               this.base = data;
+             });
+         }
+      });
   }
+
 
   listPosition = (text$: Observable<string>) =>
     text$
