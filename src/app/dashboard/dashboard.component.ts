@@ -8,6 +8,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 
 import { CompanySchema, globalStructureSchema, RecruitersInfoSchema } from '../classDefinition';
 import { DashboardService } from './dashboard.service';
+import { GenericService } from '../generic/generic.service';
 
 @Component({
   selector: 'my-dashboard',
@@ -28,7 +29,7 @@ export class DashboardComponent implements OnInit {
     company: undefined,
     title: undefined,
     description: undefined,
-    date: undefined,
+    date: new Date(),
     application: false,
     answer_receive: false,
     meeting: [],
@@ -42,22 +43,22 @@ export class DashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private genericService: GenericService
   ) { }
 
   ngOnInit(): void {
-    this.dashboardService.getCompanyList()
+    this.genericService.getCompanyList()
       .then(companyList => {
         this.companyList = companyList;
       });
-    this.dashboardService.getRecrutersList()
+    this.genericService.getRecrutersList()
       .then(list => {
         this.RecrutersList = list;
       });
       this.sub = this.route.params.subscribe(params => {
          this.id = params['id'];
          if (this.id) {
-           console.log('ID IS:', this.id);
            this.dashboardService.getJobId(this.id)
              .then(data => {
                this.base = data;

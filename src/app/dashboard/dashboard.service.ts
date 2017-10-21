@@ -3,36 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { CompanySchema, RecruitersInfoSchema, globalStructureSchema } from '../classDefinition';
+import { globalStructureSchema } from '../classDefinition';
 
 @Injectable()
 export class DashboardService {
   private baseUrl:string = 'http://localhost:3001';
-  private cieUrl = `${this.baseUrl}/cie`;  // URL to web api
-  private recruitersUrl = `${this.baseUrl}/recruiters`;
   private jobUrl = `${this.baseUrl}/list`;
 
   constructor( private http: HttpClient ) { }
-
-  getCompanyList(): Promise<Array<CompanySchema>> {
-    return this.http
-      .get(this.cieUrl)
-      .toPromise()
-      .then((response) => {
-        return response as CompanySchema[];
-      })
-      .catch(this.handleError);
-  }
-
-  getRecrutersList(): Promise<Array<RecruitersInfoSchema>> {
-    return this.http
-      .get(this.recruitersUrl)
-      .toPromise()
-      .then((response) => {
-        return response as RecruitersInfoSchema[];
-      })
-      .catch(this.handleError);
-  }
 
   getJobId(id:string): Promise<globalStructureSchema> {
     return this.http

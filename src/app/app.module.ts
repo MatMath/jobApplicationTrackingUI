@@ -9,12 +9,15 @@ import { InMemoryDataService } from './in-memory-data.service';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { GenericService } from './generic/generic.service';
 
 import { DashboardService } from './dashboard/dashboard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { AnalyticComponent } from './analytic/analytic.component';
 import { AnalyticService } from './analytic/analytic.service';
+
+import { CompanyComponent } from './company/company.component';
 
 @NgModule({
   imports: [
@@ -28,8 +31,9 @@ import { AnalyticService } from './analytic/analytic.service';
     AppComponent,
     DashboardComponent,
     AnalyticComponent,
+    CompanyComponent,
   ],
-  providers: [DashboardService, AnalyticService],
+  providers: [DashboardService, AnalyticService, GenericService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
