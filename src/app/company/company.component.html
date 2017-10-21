@@ -1,3 +1,43 @@
-<h2>CIE LIST</h2>
+<div *ngIf="showList">
+  <br />
+  <div class="row">
+    <div class="col-1"><button class="btn btn-success">New</button></div>
+    <h3>Company list</h3>
+  </div>
+  <br />
+  <div class="row" *ngFor='let cie of companyList'>
+    <div class="col-2">
+      <button class="btn btn-danger" (click)="deleteCieId(cie._id)">Delete</button>
+      <button class="btn btn-info" (click)="editThisCie(cie)">Edit</button>
+    </div>
+    <div class="col-6">
+        {{cie.name}} - {{cie.location}}
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-1"><button class="btn btn-success">New</button></div>
+    <h3>Recruiters list</h3>
+  </div>
+  <br />
+  <div class="row" *ngFor='let item of RecrutersList'>
+    <div class="col-2">
+      <button class="btn btn-danger" (click)="deleteRecruId(item._id)">Delete</button>
+      <button class="btn btn-info" (click)="editThisRecruters(item)">Edit</button>
+    </div>
+    <div class="col-6">
+        {{item.cie}} - {{item.name}}
+    </div>
+  </div>
+</div>
+
+<!-- Edit Company Section -->
+<div *ngIf="showCie">
+ EDIT CIE
+</div>
+
+<div *ngIf="showRecruters">
+ EDIT Recruiters
+</div>
 <pre>{{ companyList | json }}</pre>
 <pre>{{ RecrutersList | json}}</pre>

@@ -4,6 +4,7 @@ export class Hero {
 }
 
 export class CompanySchema {
+  _id: string;
   name: string;
   location: string;
   gps: {
@@ -15,6 +16,7 @@ export class CompanySchema {
 };
 
 export class RecruitersInfoSchema {
+  _id: string;
   cie: string;
   name: string;
 };
