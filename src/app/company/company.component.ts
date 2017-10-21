@@ -41,7 +41,7 @@ export class CompanyComponent implements OnInit {
     private genericService: GenericService,
     private companyService: CompanyService
   ) {}
-  private removeIdFromList = (list:RecruitersInfoSchema[], id:string):RecruitersInfoSchema[] => list.filter(item => (item._id !== id))
+  private removeIdFromList = (list, id:string) => list.filter(item => (item._id !== id))
 
   ngOnInit():void {
     this.genericService.getCompanyList()
@@ -67,8 +67,14 @@ export class CompanyComponent implements OnInit {
     this.activeCie = this.emptyCie;
     this.activeRecruters = {...this.emptyRecruters};
   }
+
+  // Company Section
   deleteCieId(id):void {
-    console.log('Delete this ID', id);
+    this.companyService.deleteCieId(id)
+      .then(data => {
+        this.companyList = this.removeIdFromList(this.companyList, id);
+        this.activeCie = {...this.emptyCie};
+      })
   }
   editThisCie(company:CompanySchema):void {
     this.activeCie = company;
@@ -78,8 +84,19 @@ export class CompanyComponent implements OnInit {
     this.showRecruters = false;
   }
 
+  submitCie():void {
+    this.companyService.saveCie(this.activeCie)
+      .then(data => {
+        if (!this.activeCie._id) {
+          this.companyList.push(this.activeCie);
+        }
+        this.activeCie = {...this.emptyCie};
+        this.listView();
+      })
+  }
+
+  // Recruiters Section
   deleteRecruId(id:string):void {
-    console.log('Delete this ID', id);
     this.companyService.deleteRecruId(id)
       .then(data => {
         this.RecrutersList = this.removeIdFromList(this.RecrutersList, id);

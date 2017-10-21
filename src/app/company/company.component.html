@@ -15,6 +15,7 @@
     </div>
   </div>
   <br />
+  <hr />
   <div class="row">
     <div class="col-1"><button class="btn btn-success" (click)="newCie(false)">New</button></div>
     <h3>Recruiters list</h3>
@@ -33,11 +34,35 @@
 
 <!-- Edit Company Section -->
 <div *ngIf="showCie">
- EDIT CIE
+  <h3>Edit Company :</h3>
+  <form (ngSubmit)="submitCie()" #newApplication="ngForm">
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label" for="name">Company Name</label>
+      <input type="text" class="form-control col-10" id="name"
+             required
+             [(ngModel)]="activeCie.name" name="name"
+             #name="ngModel">
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger"> Company is required </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label" for="cie">Location</label>
+      <input type="text" class="form-control col-10" id="location"
+             required
+             [(ngModel)]="activeCie.location" name="location"
+             #location="ngModel">
+      <div [hidden]="location.valid || location.pristine" class="alert alert-danger"> Name is required </div>
+    </div>
+
+    <div class="row">
+      <button type="submit" class="btn btn-success" [disabled]="!newApplication.form.valid">Submit</button>
+    </div>
+  </form>
 </div>
 
 <div *ngIf="showRecruters">
-  <h3>EDIT Recruiters :</h3>
+  <h3>Edit Recruiters :</h3>
   <form (ngSubmit)="submitRecru()" #newApplication="ngForm">
 
     <div class="form-group row">
@@ -62,11 +87,11 @@
       <button type="submit" class="btn btn-success" [disabled]="!newApplication.form.valid">Submit</button>
     </div>
   </form>
-  <pre>{{activeRecruters | json}}</pre>
 </div>
+
 <div *ngIf="!showList">
   <br />
-  <button class="btn btn-info" (click)="listView()">List View</button>
+  <div class="row">
+    <button class="btn btn-info" (click)="listView()">List View</button>
+  </div>
 </div>
-<!-- <pre>{{ companyList | json }}</pre>
-<pre>{{ RecrutersList | json}}</pre> -->
