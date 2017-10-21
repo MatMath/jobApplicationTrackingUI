@@ -36,11 +36,11 @@ export class DashboardService {
 
   getJobId(id:string): Promise<globalStructureSchema> {
     return this.http
-      .get(this.jobUrl, id)
+      .get(`${this.jobUrl}/${id}`)
       .toPromise()
       .then((response) => {
         console.log('RESPONSE:', response);
-        return response as globalStructureSchema;
+        return response;
       })
       .catch(this.handleError);
   }
@@ -65,9 +65,8 @@ export class DashboardService {
 
   // Update existing Job
   private putJob(job: globalStructureSchema): Promise<globalStructureSchema> {
-    const url = `${this.jobUrl}/${job._id}`;
     return this.http
-      .put(url, job)
+      .put(this.jobUrl, job)
       .toPromise()
       .then(() => job)
       .catch(this.handleError);
