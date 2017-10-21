@@ -1,7 +1,7 @@
+<br />
 <div *ngIf="showList">
-  <br />
   <div class="row">
-    <div class="col-1"><button class="btn btn-success">New</button></div>
+    <div class="col-1"><button class="btn btn-success" (click)="newCie(true)">New</button></div>
     <h3>Company list</h3>
   </div>
   <br />
@@ -16,7 +16,7 @@
   </div>
   <br />
   <div class="row">
-    <div class="col-1"><button class="btn btn-success">New</button></div>
+    <div class="col-1"><button class="btn btn-success" (click)="newCie(false)">New</button></div>
     <h3>Recruiters list</h3>
   </div>
   <br />
@@ -37,7 +37,36 @@
 </div>
 
 <div *ngIf="showRecruters">
- EDIT Recruiters
+  <h3>EDIT Recruiters :</h3>
+  <form (ngSubmit)="submitRecru()" #newApplication="ngForm">
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label" for="cie">Company Name</label>
+      <input type="text" class="form-control col-10" id="cie"
+             required
+             [(ngModel)]="activeRecruters.cie" name="cie"
+             #cie="ngModel">
+      <div [hidden]="cie.valid || cie.pristine" class="alert alert-danger"> Company is required </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label" for="cie">Recruiter name</label>
+      <input type="text" class="form-control col-10" id="name"
+             required
+             [(ngModel)]="activeRecruters.name" name="name"
+             #name="ngModel">
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger"> Name is required </div>
+    </div>
+
+    <div class="row">
+      <button type="submit" class="btn btn-success" [disabled]="!newApplication.form.valid">Submit</button>
+    </div>
+  </form>
+  <pre>{{activeRecruters | json}}</pre>
 </div>
-<pre>{{ companyList | json }}</pre>
-<pre>{{ RecrutersList | json}}</pre>
+<div *ngIf="!showList">
+  <br />
+  <button class="btn btn-info" (click)="listView()">List View</button>
+</div>
+<!-- <pre>{{ companyList | json }}</pre>
+<pre>{{ RecrutersList | json}}</pre> -->

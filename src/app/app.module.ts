@@ -18,6 +18,7 @@ import { AnalyticComponent } from './analytic/analytic.component';
 import { AnalyticService } from './analytic/analytic.service';
 
 import { CompanyComponent } from './company/company.component';
+import { CompanyService } from './company/company.service';
 
 @NgModule({
   imports: [
@@ -31,9 +32,13 @@ import { CompanyComponent } from './company/company.component';
     AppComponent,
     DashboardComponent,
     AnalyticComponent,
-    CompanyComponent,
+    CompanyComponent
   ],
-  providers: [DashboardService, AnalyticService, GenericService],
+  providers: [
+    DashboardService,
+    AnalyticService,
+    GenericService,
+    CompanyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

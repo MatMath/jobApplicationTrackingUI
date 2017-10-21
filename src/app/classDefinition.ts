@@ -1,8 +1,3 @@
-export class Hero {
-  id: number;
-  name: string;
-}
-
 export class CompanySchema {
   _id: string;
   name: string;

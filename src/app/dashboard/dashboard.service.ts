@@ -30,7 +30,7 @@ export class DashboardService {
     return this.postJob(job);
   }
 
-  // Add new Hero
+  // Add new Job
   private postJob(job: globalStructureSchema): Promise<globalStructureSchema> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
