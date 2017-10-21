@@ -56,15 +56,15 @@ export class DashboardComponent implements OnInit {
       .then(list => {
         this.RecrutersList = list;
       });
-      this.sub = this.route.params.subscribe(params => {
-         this.id = params['id'];
-         if (this.id) {
-           this.dashboardService.getJobId(this.id)
-             .then(data => {
-               this.base = data;
-             });
-         }
-      });
+    this.sub = this.route.params.subscribe(params => {
+       this.id = params['id'];
+       if (this.id) {
+         this.dashboardService.getJobId(this.id)
+           .then(data => {
+             this.base = data;
+           });
+       }
+    });
   }
 
 
