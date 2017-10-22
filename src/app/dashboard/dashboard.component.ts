@@ -9,6 +9,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import { CompanySchema, globalStructureSchema, RecruitersInfoSchema } from '../classDefinition';
 import { DashboardService } from './dashboard.service';
 import { GenericService } from '../generic/generic.service';
+import { CompanyService } from '../company/company.service';
 
 @Component({
   selector: 'my-dashboard',
@@ -37,15 +38,28 @@ export class DashboardComponent implements OnInit {
     cover_letter: undefined,
   };
   base: globalStructureSchema = {...this.emptyObject};
+  emptyCie: CompanySchema = {
+    _id: undefined,
+    name: undefined,
+    location: undefined,
+    gps: {
+      type: undefined,
+      coordinates: [0, 0]
+    },
+    contact: undefined,
+    link: undefined,
+  };
+  activeCie: CompanySchema = this.emptyCie;
+  newCie:boolean = true;
   id:string;
-  private sub: any;
   submitted: boolean = false;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private dashboardService: DashboardService,
-    private genericService: GenericService
+    private genericService: GenericService,
+    private companyService: CompanyService
   ) { }
 
   ngOnInit(): void {
@@ -57,7 +71,7 @@ export class DashboardComponent implements OnInit {
       .then(list => {
         this.RecrutersList = list;
       });
-    this.sub = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
        this.id = params['id'];
        if (this.id) {
          this.dashboardService.getJobId(this.id)
@@ -75,8 +89,23 @@ export class DashboardComponent implements OnInit {
       .map(term => term.length < 1 ? []
         : this.typeOfPosition.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
 
+  toggleCie():void {
+    this.newCie = !this.newCie;
+    this.activeCie = this.emptyCie; // Always reset if we switch so it is easier.
+  }
+  spreadCie():void {
+    this.base.location = (this.base.location)? this.base.location: this.activeCie.location;
+  }
   onSubmit(form):void {
     this.base.applicationType = (this.base.recruiters) ? 'Recruiters' : 'Direct';
+    this.base.location = (this.base.location) ? this.base.location: this.activeCie.location;
+    // Check if New Cie, if new Cie then Merge the data. + Submit the Cie.
+    if(this.activeCie.name) {
+      this.base.company = this.activeCie.name;
+      //Submit New Cie with basic information.
+      this.companyService.saveCie(this.activeCie)
+        .then(data => { this.activeCie = this.emptyCie; })
+    }
     // Convert data and Post it.
     this.dashboardService.saveJob(this.base).then(answer => {
       this.submitted = true;

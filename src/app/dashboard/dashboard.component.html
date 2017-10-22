@@ -1,21 +1,49 @@
 <h3>New application</h3>
 <div class="grid grid-pad">
   <form (ngSubmit)="onSubmit(newApplication);" #newApplication="ngForm">
-    <div class="form-group row">
+    <div class="form-group row" *ngIf="newCie">
+      <div class="col-1"> <button class="btn btn-success" (click)="toggleCie()">New</button> </div>
       <label class="col-2 col-form-label" for="company">Select Company</label>
-      <select class="form-control col-10" id="company"
+      <select class="form-control col-9" id="company"
               required
-              [(ngModel)]="base.company" name="company"
+              (change)="spreadCie()"
+              [(ngModel)]="activeCie" name="company"
               #company="ngModel">
         <option [value]=""></option>
-        <option *ngFor="let cie of companyList" [value]="cie.name">{{cie.name}}</option>
+        <option *ngFor="let cie of companyList" [ngValue]="cie">{{cie.name}}</option>
       </select>
       <div [hidden]="company.valid || company.pristine" class="alert alert-danger"> Company is required </div>
     </div>
+    <div *ngIf="!newCie" class="form-group row">
+      <div class="col-1"> <button class="btn btn-success" (click)="toggleCie()">Existing</button> </div>
+      <label class="col-2 col-form-label" for="name">Company Name</label>
+      <input type="text" class="form-control col-9" id="name"
+             required
+             [(ngModel)]="activeCie.name" name="name"
+             #name="ngModel">
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger"> Company is required </div>
+    </div>
+    <div *ngIf="!newCie" class="form-group row">
+      <label class="col-3 col-form-label" for="cie">Company Location</label>
+      <input type="text" class="form-control col-9" id="location"
+             required
+             [(ngModel)]="activeCie.location" name="location"
+             #location="ngModel">
+      <div [hidden]="location.valid || location.pristine" class="alert alert-danger"> Name is required </div>
+    </div>
+    <hr *ngIf="!newCie" />
 
+    <div *ngIf="newCie" class="form-group row">
+      <label class="col-3 col-form-label" for="name">Location</label>
+      <input type="text" class="form-control col-9" id="location"
+             required
+             [(ngModel)]="base.location" name="location"
+             #location="ngModel">
+      <div [hidden]="location.valid || location.pristine" class="alert alert-danger"> Name is required </div>
+    </div>
     <div class="form-group row">
-      <label class="col-2 col-form-label" for="recruiters">Select Recruiters</label>
-      <select class="form-control col-10" id="recruiters"
+      <label class="col-3 col-form-label" for="recruiters">Select Recruiters</label>
+      <select class="form-control col-9" id="recruiters"
               [(ngModel)]="base.recruiters" name="recruiters"
               #recruiters="ngModel">
         <option [value]=""></option>
@@ -24,8 +52,8 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-2 col-form-label" for="title col-xs-2">Title</label>
-      <input type="text" class="form-control col-10" id="title"
+      <label class="col-3 col-form-label" for="title col-xs-2">Title</label>
+      <input type="text" class="form-control col-9" id="title"
              required
              [ngbTypeahead]="listPosition"
              [(ngModel)]="base.title" name="title"
@@ -34,8 +62,8 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-2 col-form-label" for="website">Select Website</label>
-      <select class="form-control col-10" id="website"
+      <label class="col-3 col-form-label" for="website">Select Website</label>
+      <select class="form-control col-9" id="website"
               [(ngModel)]="base.website" name="website"
               #recruiters="ngModel">
         <option *ngFor="let list of websiteList" [value]="list">{{list}}</option>
@@ -43,28 +71,19 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-2 col-form-label" for="name">Location</label>
-      <input type="text" class="form-control col-10" id="location"
-             required
-             [(ngModel)]="base.location" name="location"
-             #location="ngModel">
-      <div [hidden]="location.valid || location.pristine" class="alert alert-danger"> Name is required </div>
-    </div>
-
-    <div class="form-group row">
-      <label class="col-2 col-form-label" for="name">Description</label>
-      <input type="text" class="form-control col-10" id="description"
+      <label class="col-3 col-form-label" for="name">Description</label>
+      <input type="text" class="form-control col-9" id="description"
              [(ngModel)]="base.description" name="description">
     </div>
 
     <div class="form-group row">
-      <label class="col-2 col-form-label" for="name">Date Picker</label>
-      <input type="date" class="form-control col-10" id="date"
+      <label class="col-3 col-form-label" for="name">Date Picker</label>
+      <input type="date" class="form-control col-9" id="date"
              [(ngModel)]="base.date" name="date">
     </div>
 
     <div class="form-group row">
-      <label class="col-2 col-form-label" for="name">Did you apply</label>
+      <label class="col-3 col-form-label" for="name">Did you apply</label>
       <div class="btn-group col-3" ngbRadioGroup name="apply" [(ngModel)]="base.application">
         <label ngbButtonLabel class="btn btn-secondary" [ngClass]="{'btn-success': base.application}">
           <input ngbButton type="radio" [value]="true"> Yes
@@ -75,7 +94,7 @@
     </div>
 
     <div class="form-group row" *ngIf='base.application'>
-      <label class="col-2 col-form-label" for="name">Received an answer</label>
+      <label class="col-3 col-form-label" for="name">Received an answer</label>
       <div class="btn-group col-3" ngbRadioGroup name="apply" [(ngModel)]="base.answer_receive">
         <label ngbButtonLabel class="btn btn-secondary" [ngClass]="{'btn-success': base.answer_receive}">
           <input ngbButton type="radio" [value]="true"> Yes
@@ -89,20 +108,19 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-2 col-form-label" for="notes">Notes</label>
+      <label class="col-3 col-form-label" for="notes">Notes</label>
       <textarea rows="5" [(ngModel)]="base.notes" name="notes"> {{base.notes}}</textarea>
     </div>
 
     <div class="form-group row">
-      <label class="col-2 col-form-label" for="cover">Cover letter URL</label>
-      <input type="cover_letter" class="form-control col-10" id="cover_letter"
+      <label class="col-3 col-form-label" for="cover">Cover letter URL</label>
+      <input type="cover_letter" class="form-control col-9" id="cover_letter"
              [(ngModel)]="base.cover_letter" name="cover_letter">
     </div>
 
     <div class="row">
       <button type="submit" class="btn btn-success" [disabled]="!newApplication.form.valid">Submit</button>
     </div>
-
   </form>
 
 </div>
