@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   RecrutersList: RecruitersInfoSchema[] = [];
   websiteList: string[] = ['', 'Indeed', 'Linkedin', 'ZipRecruters'];
   typeOfPosition: string[] = ['Front End Eng', 'NodeJs Eng', 'Senior Front-end', 'Senior Backend', 'Fullstack', 'Senior Fullstack'];
-  base: globalStructureSchema = {
+  emptyObject: globalStructureSchema = {
     _id: undefined,
     location: undefined,
     website: undefined,
@@ -36,6 +36,7 @@ export class DashboardComponent implements OnInit {
     notes: undefined,
     cover_letter: undefined,
   };
+  base: globalStructureSchema = {...this.emptyObject};
   id:string;
   private sub: any;
   submitted: boolean = false;
@@ -67,7 +68,6 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-
   listPosition = (text$: Observable<string>) =>
     text$
       .debounceTime(100)
@@ -75,11 +75,13 @@ export class DashboardComponent implements OnInit {
       .map(term => term.length < 1 ? []
         : this.typeOfPosition.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
 
-  onSubmit() {
+  onSubmit(form):void {
     this.base.applicationType = (this.base.recruiters) ? 'Recruiters' : 'Direct';
     // Convert data and Post it.
     this.dashboardService.saveJob(this.base).then(answer => {
       this.submitted = true;
+      this.base = this.emptyObject;
+      form.reset();
     });
   }
 
