@@ -6,11 +6,11 @@
       <label class="col-2 col-form-label" for="company">Select Company</label>
       <select class="form-control col-9" id="company"
               required
-              (change)="spreadCie()"
-              [(ngModel)]="activeCie" name="company"
+              (change)="spreadCie($event)"
+              [(ngModel)]="base.company" name="company"
               #company="ngModel">
         <option [value]=""></option>
-        <option *ngFor="let cie of companyList" [ngValue]="cie">{{cie.name}}</option>
+        <option *ngFor="let cie of companyList" [value]="cie.name">{{cie.name}}</option>
       </select>
       <div [hidden]="company.valid || company.pristine" class="alert alert-danger"> Company is required </div>
     </div>

@@ -93,8 +93,18 @@ export class DashboardComponent implements OnInit {
     this.newCie = !this.newCie;
     this.activeCie = this.emptyCie; // Always reset if we switch so it is easier.
   }
-  spreadCie():void {
-    this.base.location = (this.base.location)? this.base.location: this.activeCie.location;
+  spreadCie(event):void {
+    // I can return an object OR a String but It cannot be match/set active on both (object Or string).
+    // Take the tring and find the location associated with it.
+    this.base.location = (this.base.location)? this.base.location: this.findLocation(event.target.value);
+  }
+  private findLocation(name:string):string {
+    for(let i = 0; i < this.companyList.length; i++) {
+      if(this.companyList[i].name === name) {
+        return this.companyList[i].location;
+      }
+    }
+    return;
   }
   onSubmit(form):void {
     this.base.applicationType = (this.base.recruiters) ? 'Recruiters' : 'Direct';
