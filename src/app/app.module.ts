@@ -10,6 +10,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GenericService } from './generic/generic.service';
+import { NgbdModalContent } from './generic/confirmModal';
 
 import { DashboardService } from './dashboard/dashboard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -32,13 +33,15 @@ import { CompanyService } from './company/company.service';
     AppComponent,
     DashboardComponent,
     AnalyticComponent,
-    CompanyComponent
+    CompanyComponent,
+    NgbdModalContent,
   ],
   providers: [
     DashboardService,
     AnalyticService,
     GenericService,
     CompanyService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ NgbdModalContent ]
 })
 export class AppModule { }

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, Routes } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { globalStructureSchema } from '../classDefinition';
 import { AnalyticService } from './analytic.service';
+import { NgbdModalContent } from '../generic/confirmModal';
 
 @Component({
   selector: 'my-analytic',
@@ -15,7 +17,8 @@ export class AnalyticComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private analyticService: AnalyticService
+    private analyticService: AnalyticService,
+    private modalService: NgbModal,
   ) { }
 
   deleteThisId(id:string): void {
@@ -24,6 +27,11 @@ export class AnalyticComponent implements OnInit {
       this.jobList = this.removeIdFromList(this.jobList, id);
       //Pop the ID from the Object instead of doing a call.
     });
+  }
+
+  open() {
+    const modalRef = this.modalService.open(NgbdModalContent);
+    modalRef.componentInstance.name = 'World';
   }
 
   goToEditJobDetails(id) {
