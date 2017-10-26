@@ -15,11 +15,26 @@ export class AnalyticComponent implements OnInit {
   jobList: globalStructureSchema[];
   error: any;
 
+  // Pagination param
+  collectionSize: number;
+  pageSize:number = 2;
+  page: number = 1;
+  fromNbr:number = 0;
+  toNbr:number = this.pageSize;
+
   constructor(
     private router: Router,
     private analyticService: AnalyticService,
     private modalService: NgbModal,
   ) { }
+
+  ngOnInit(): void {
+    this.analyticService.getJobList()
+    .then((data) => {
+      this.jobList = data;
+      this.collectionSize = data.length;
+    });
+  }
 
   deleteThisId(id:string): void {
     this.analyticService.deleteListId(id)
@@ -43,11 +58,10 @@ export class AnalyticComponent implements OnInit {
 
   private removeIdFromList = (list:globalStructureSchema[], id:string):globalStructureSchema[] => list.filter(item => (item._id !== id))
 
-  ngOnInit(): void {
-    this.analyticService.getJobList()
-    .then((data) => {
-      this.jobList = data;
-    });
+
+  switchPageTo(nbr:number):void {
+    this.fromNbr = (nbr - 1)*this.pageSize;
+    this.toNbr = nbr*this.pageSize;
   }
 
 }
