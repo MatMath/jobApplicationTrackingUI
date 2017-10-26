@@ -7,7 +7,10 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './confirmModal.component.html',
 })
 export class NgbdModalContent {
-  @Input() name;
+  @Input() id: string;
+  @Input() name: string;
+  @Input() description: string;
+  @Input() callback: Object;
 
   constructor(public activeModal: NgbActiveModal) {}
 }

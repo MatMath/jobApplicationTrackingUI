@@ -5,8 +5,9 @@
   </button>
 </div>
 <div class="modal-body">
-  <p>Hello, {{name}}!</p>
+  <p>Are you sure you want to delete: {{name}} - {{description}}? </p>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+  <button type="button" class="btn btn-danger" (click)="callback(id);activeModal.close('Close click')">Yes</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cancel</button>
 </div>

@@ -29,9 +29,12 @@ export class AnalyticComponent implements OnInit {
     });
   }
 
-  open() {
+  confirmDelete(obj:globalStructureSchema) {
     const modalRef = this.modalService.open(NgbdModalContent);
-    modalRef.componentInstance.name = 'World';
+    modalRef.componentInstance.id = obj._id;
+    modalRef.componentInstance.name = obj.company;
+    modalRef.componentInstance.description = obj.title;
+    modalRef.componentInstance.callback = this.deleteThisId.bind(this); // Otherwise This is not This it is That... Hate Class and Bind(this) crap.
   }
 
   goToEditJobDetails(id) {

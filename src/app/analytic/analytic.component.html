@@ -4,7 +4,7 @@
     <li>- On click -> Move to the Dashboard with ID.</li>
     <li>Futur: Page or Scrool table.</li>
   </ul>
-  <div class="row" (click)="open()">
+  <div class="row">
     <div class="col-2"> Options </div>
     <div class="col-2"> Cie </div>
     <div class="col-2"> Recruiters </div>
@@ -14,7 +14,7 @@
   </div>
   <div class="row" *ngFor="let job of jobList">
     <div class="col-2">
-      <button class="btn btn-danger" (click)="deleteThisId(job._id)">Delete</button>
+      <button class="btn btn-danger" (click)="confirmDelete(job)">Delete</button>
       <button class="btn btn-info" (click)="goToEditJobDetails(job._id)">Edit</button>
     </div>
     <div class="col-2"> {{job.company}} </div>
