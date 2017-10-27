@@ -2,8 +2,10 @@
 <div class="grid grid-pad">
   <form (ngSubmit)="onSubmit(newApplication);" #newApplication="ngForm">
     <div class="form-group row" *ngIf="newCie">
-      <div class="col-1"> <button class="btn btn-success" (click)="toggleCie()">New</button> </div>
-      <label class="col-2 col-form-label" for="company">Select Company</label>
+      <div class="col-3">
+        <button *ngIf="!base._id" class="btn btn-success" (click)="toggleCie()">New</button>
+        <label class="col-form-label" for="company">Select Company</label>
+      </div>
       <select class="form-control col-9" id="company"
               required
               (change)="spreadCie($event)"

@@ -84,6 +84,7 @@ export class DashboardComponent implements OnInit {
          this.dashboardService.getJobId(this.id)
            .then(data => {
              this.base = data;
+             this.newCie = true;
            });
        }
     });
