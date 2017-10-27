@@ -101,15 +101,47 @@
         </label>
         <label ngbButtonLabel class="btn btn-secondary" [ngClass]="{'btn-danger': !base.answer_receive}"> <input ngbButton type="radio" [value]="false"> No </label>
       </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-success" (click)="addMetting()">Add meeting info</button>
+      </div>
     </div>
 
-    <div>
-      <span>Add Meeting Menu here... probably as a sub component.</span>
+    <div *ngIf="base.meeting.length > 0">
+      <div *ngFor="let item of base.meeting; let i = index;">
+        <div class="row">
+          <div class="col-3"><button type="button" class="btn btn-danger" (click)="remoteThisMeeting(i)">Delete</button></div>
+          <input type="date" class="col-2 form-control" id="date" [(ngModel)]="item.date" name="itemDate-{{i}}">
+          <div class="col-2 text-right"> Purpose </div>
+          <input type="text" class="form-control col-5" id="purpose" [(ngModel)]="item.purpose" name="purpose-{{i}}">
+        </div>
+        <div class="row">
+          <div class="col-3"> Participant: </div>
+          <input
+            type="text"
+            class="form-control col-4"
+            #box
+            name="box-{{i}}"
+            (keyup.enter)="addParticipant(item, box.value); box.value =''">
+        </div>
+        <div class="row" *ngIf="item.participants.length > 0">
+          <div class="col-3"> Participant: </div>
+          <span *ngFor="let person of item.participants; let j of index;">{{person}} / </span>
+        </div>
+        <div class="row">
+          <div class="col-2"> Challenge: </div>
+          <div class="col-10"> {{item.challenge}} </div>
+        </div>
+        <div class="row">
+          <div class="col-3"> Extra notes: </div>
+          <textarea class="col-9" rows="5" [(ngModel)]="item.notes" name="notes-{{i}}"> {{item.notes}}</textarea>
+        </div>
+        <br />
+      </div>
     </div>
 
     <div class="form-group row">
       <label class="col-3 col-form-label" for="notes">Notes</label>
-      <textarea rows="5" [(ngModel)]="base.notes" name="notes"> {{base.notes}}</textarea>
+      <textarea class="col-9" rows="5" [(ngModel)]="base.notes" name="notes"> {{base.notes}}</textarea>
     </div>
 
     <div class="form-group row">

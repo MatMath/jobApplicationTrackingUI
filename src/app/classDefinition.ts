@@ -16,9 +16,9 @@ export class RecruitersInfoSchema {
   name: string;
 };
 
-export class MeetinXgInfoSchema {
+export class MeetingInfoSchema {
   date: number;
-  participants: [string];
+  participants: string[];
   purpose: string;
   challenge: string
   notes: string
@@ -36,7 +36,7 @@ export class globalStructureSchema {
   date: Date; // Converted number.
   application: boolean;
   answer_receive: boolean;
-  meeting: any[]; // TODO find why it is always undefined if I link them
+  meeting: MeetingInfoSchema[];
   notes: string;
   cover_letter: string;
 };

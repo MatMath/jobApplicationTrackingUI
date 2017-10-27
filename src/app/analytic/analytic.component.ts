@@ -17,7 +17,7 @@ export class AnalyticComponent implements OnInit {
 
   // Pagination param
   collectionSize: number;
-  pageSize:number = 2;
+  pageSize:number = 5;
   page: number = 1;
   fromNbr:number = 0;
   toNbr:number = this.pageSize;

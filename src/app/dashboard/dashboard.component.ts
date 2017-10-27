@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-import { CompanySchema, globalStructureSchema, RecruitersInfoSchema } from '../classDefinition';
+import { CompanySchema, globalStructureSchema, RecruitersInfoSchema, MeetingInfoSchema } from '../classDefinition';
 import { DashboardService } from './dashboard.service';
 import { GenericService } from '../generic/generic.service';
 import { CompanyService } from '../company/company.service';
@@ -48,6 +48,13 @@ export class DashboardComponent implements OnInit {
     },
     contact: undefined,
     link: undefined,
+  };
+  meetingInfo: MeetingInfoSchema = {
+    date: undefined,
+    participants: [],
+    purpose: undefined,
+    challenge: undefined,
+    notes: undefined,
   };
   activeCie: CompanySchema = this.emptyCie;
   newCie:boolean = true;
@@ -105,6 +112,15 @@ export class DashboardComponent implements OnInit {
       }
     }
     return;
+  }
+  addMetting():void {
+    this.base.meeting = [...this.base.meeting, Object.assign({}, this.meetingInfo)];
+  }
+  remoteThisMeeting(i: number) {
+    this.base.meeting = this.base.meeting.filter((item, index) => (i !== index));
+  }
+  addParticipant(item:MeetingInfoSchema, name:string) {
+    item.participants = [...item.participants, name];
   }
   onSubmit(form):void {
     this.base.applicationType = (this.base.recruiters) ? 'Recruiters' : 'Direct';
