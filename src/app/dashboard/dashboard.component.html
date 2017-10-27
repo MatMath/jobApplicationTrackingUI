@@ -1,6 +1,6 @@
 <h3>New application</h3>
 <div class="grid grid-pad">
-  <form (ngSubmit)="onSubmit(newApplication);" #newApplication="ngForm">
+  <form #newApplication="ngForm">
     <div class="form-group row" *ngIf="newCie">
       <div class="col-3">
         <button *ngIf="!base._id" class="btn btn-success" (click)="toggleCie()">New</button>
@@ -156,7 +156,7 @@
     </div>
 
     <div class="row">
-      <button type="submit" class="btn btn-success" [disabled]="!newApplication.form.valid">Submit</button>
+      <button type="button" class="btn btn-success" (click)="onSubmit(newApplication);" [disabled]="!newApplication.form.valid">Submit</button>
     </div>
   </form>
 
