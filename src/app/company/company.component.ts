@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 // Types
 import { CompanySchema, RecruitersInfoSchema } from '../classDefinition';
 
+// Custom Files
 import { GenericService } from '../generic/generic.service';
 import { CompanyService } from './company.service';
+import { NgbdModalContent } from '../generic/confirmModal';
 
 @Component({
   selector: 'my-company',
@@ -39,7 +42,8 @@ export class CompanyComponent implements OnInit {
 
   constructor(
     private genericService: GenericService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private modalService: NgbModal,
   ) {}
   private removeIdFromList = (list, id:string) => list.filter(item => (item._id !== id))
 
@@ -64,11 +68,18 @@ export class CompanyComponent implements OnInit {
     this.showList = false;
     this.showCie = cie;
     this.showRecruters = !cie;
-    this.activeCie = this.emptyCie;
+    this.activeCie = {...this.emptyCie};
     this.activeRecruters = {...this.emptyRecruters};
   }
 
   // Company Section
+  confirmCDelete(obj:CompanySchema) {
+    const modalRef = this.modalService.open(NgbdModalContent);
+    modalRef.componentInstance.id = obj._id;
+    modalRef.componentInstance.name = obj.name;
+    modalRef.componentInstance.description = obj.location;
+    modalRef.componentInstance.callback = this.deleteCieId.bind(this); // Otherwise This is not This it is That... Hate Class and Bind(this) crap.
+  }
   deleteCieId(id):void {
     this.companyService.deleteCieId(id)
       .then(data => {
@@ -96,6 +107,13 @@ export class CompanyComponent implements OnInit {
   }
 
   // Recruiters Section
+  confirmRDelete(obj:RecruitersInfoSchema) {
+    const modalRef = this.modalService.open(NgbdModalContent);
+    modalRef.componentInstance.id = obj._id;
+    modalRef.componentInstance.name = obj.name;
+    modalRef.componentInstance.description = obj.cie;
+    modalRef.componentInstance.callback = this.deleteRecruId.bind(this); // Otherwise This is not This it is That... Hate Class and Bind(this) crap.
+  }
   deleteRecruId(id:string):void {
     this.companyService.deleteRecruId(id)
       .then(data => {
