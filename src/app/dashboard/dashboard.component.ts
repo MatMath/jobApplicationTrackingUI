@@ -119,6 +119,9 @@ export class DashboardComponent implements OnInit {
   remoteThisMeeting(i: number) {
     this.base.meeting = this.base.meeting.filter((item, index) => (i !== index));
   }
+  removeIndexFromArray(i:number, arr:any) {
+    arr.participants = arr.participants.filter((item, index) => (i !== index));
+  }
   addParticipant(item:MeetingInfoSchema, name:string) {
     item.participants = [...item.participants, name];
   }
