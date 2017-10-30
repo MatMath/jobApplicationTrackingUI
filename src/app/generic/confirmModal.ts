@@ -10,7 +10,7 @@ export class NgbdModalContent {
   @Input() id: string;
   @Input() name: string;
   @Input() description: string;
-  @Input() callback: Object;
+  @Input() callback: Function;
 
   constructor(public activeModal: NgbActiveModal) {}
 }
