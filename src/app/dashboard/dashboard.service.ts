@@ -4,10 +4,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
 import { globalStructureSchema } from '../classDefinition';
+import { AppSettings } from '../config';
 
 @Injectable()
 export class DashboardService {
-  private baseUrl:string = 'http://localhost:3001';
+  private baseUrl:string = AppSettings.API_ENDPOINT;
   private jobUrl = `${this.baseUrl}/list`;
 
   constructor( private http: HttpClient ) { }
@@ -17,7 +18,6 @@ export class DashboardService {
       .get(`${this.jobUrl}/${id}`)
       .toPromise()
       .then((response) => {
-        console.log('RESPONSE:', response);
         return response;
       })
       .catch(this.handleError);

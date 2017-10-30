@@ -4,10 +4,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
 import { CompanySchema, RecruitersInfoSchema } from '../classDefinition';
+import { AppSettings } from '../config';
 
 @Injectable()
 export class CompanyService {
-  private baseUrl:string = 'http://localhost:3001';
+  private baseUrl:string = AppSettings.API_ENDPOINT;
   private cieUrl = `${this.baseUrl}/cie`;  // URL to web api
   private recruitersUrl = `${this.baseUrl}/recruiters`;
 

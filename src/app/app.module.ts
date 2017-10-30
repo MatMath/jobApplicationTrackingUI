@@ -4,7 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-// import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { AppSettings } from './config';
 import { InMemoryDataService } from './in-memory-data.service';
 
 import { AppComponent } from './app.component';
@@ -40,7 +40,9 @@ import { CompanyService } from './company/company.service';
     DashboardService,
     AnalyticService,
     GenericService,
-    CompanyService],
+    CompanyService,
+    AppSettings,
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ NgbdModalContent ]
 })

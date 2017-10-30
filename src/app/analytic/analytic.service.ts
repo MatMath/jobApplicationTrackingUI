@@ -4,10 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
 import { globalStructureSchema } from '../classDefinition';
+import { AppSettings } from '../config';
 
 @Injectable()
 export class AnalyticService {
-  private baseUrl:string = 'http://localhost:3001';
+  private baseUrl:string = AppSettings.API_ENDPOINT;
   private jobUrl = `${this.baseUrl}/list`;
 
   constructor(private http: HttpClient) { }
