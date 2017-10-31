@@ -5,8 +5,14 @@ export class InMemoryDataService {
       name: 'Most Amazing Cie',
       location: 'Dublin',
       gps: {
-        type: 'Point',
-        coordinates: [0, 0],
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [22, 33],
+        },
+        properties: {
+          name: undefined,
+        }
       },
       contact: '',
       link: '',
@@ -15,8 +21,14 @@ export class InMemoryDataService {
       name: 'Second Most Amazing cie',
       location: 'Dublin South',
       gps: {
-        type: 'Point',
-        coordinates: [0, 0],
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [22, 33],
+        },
+        properties: {
+          name: undefined,
+        }
       },
       contact: '',
       link: '',

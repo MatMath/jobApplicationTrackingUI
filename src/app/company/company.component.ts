@@ -21,8 +21,14 @@ export class CompanyComponent implements OnInit {
     name: undefined,
     location: undefined,
     gps: {
-      type: undefined,
-      coordinates: [0, 0]
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [0, 0],
+      },
+      properties: {
+        name: undefined,
+      }
     },
     contact: undefined,
     link: undefined,
@@ -96,6 +102,7 @@ export class CompanyComponent implements OnInit {
   }
 
   submitCie():void {
+    this.activeCie.gps.properties.name = this.activeCie.name;
     this.companyService.saveCie(this.activeCie)
       .then(data => {
         if (!this.activeCie._id) {

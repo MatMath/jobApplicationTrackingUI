@@ -2,13 +2,21 @@ export class CompanySchema {
   _id: string;
   name: string;
   location: string;
-  gps: {
-    type: string;
-    coordinates: [number, number]
-  };
-  contact: string
-  link: string
+  gps: gps;
+  contact: string;
+  link: string;
 };
+
+export class gps {
+    type: string;
+    geometry: {
+      type: string;
+      coordinates: number[];
+    }
+    properties: {
+      name: string;
+    }
+}
 
 export class RecruitersInfoSchema {
   _id: string;

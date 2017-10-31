@@ -43,8 +43,14 @@ export class DashboardComponent implements OnInit {
     name: undefined,
     location: undefined,
     gps: {
-      type: undefined,
-      coordinates: [0, 0]
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [0, 0],
+      },
+      properties: {
+        name: undefined,
+      }
     },
     contact: undefined,
     link: undefined,

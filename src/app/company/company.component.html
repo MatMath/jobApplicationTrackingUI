@@ -54,7 +54,20 @@
              #location="ngModel">
       <div [hidden]="location.valid || location.pristine" class="alert alert-danger"> Name is required </div>
     </div>
-
+    <div class="row">
+      <div class="col-2">
+        GPS Coordonate:
+      </div> <a class="col-10" href="https://www.gps-coordinates.net/" target="_blank">www.gps-coordinates.net</a>
+    </div>
+    <div class="row">
+      <label class="col-2 col-form-label" for="gps">Coordinated (DD):</label>
+      <label class="col-1 col-form-label"> Latitude: </label> <input type="number" class="form-control col-3" id="gps0"
+             [(ngModel)]="activeCie.gps.geometry.coordinates[0]" name="gps0"
+             #name="ngModel">
+      <label class="col-1 col-form-label"> Longitude: </label> <input type="number" class="form-control col-3" id="gps1"
+             [(ngModel)]="activeCie.gps.geometry.coordinates[1]" name="gps1"
+             #name="ngModel">
+    </div>
     <div class="row">
       <button type="submit" class="btn btn-success" [disabled]="!newApplication.form.valid">Submit</button>
     </div>
