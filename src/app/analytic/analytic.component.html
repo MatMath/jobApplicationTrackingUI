@@ -20,3 +20,5 @@ Add a Search box (Here):
 </div>
 <ngb-pagination class="center" [collectionSize]="collectionSize" (pageChange)="switchPageTo($event)" [pageSize]="pageSize" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
 <div class="error" *ngIf="error">{{error}}</div>
+
+<simple-notifications [options]="options"></simple-notifications>
