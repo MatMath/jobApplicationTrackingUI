@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { AppSettings } from './config';
 import { InMemoryDataService } from './in-memory-data.service';
@@ -28,6 +30,8 @@ import { CompanyService } from './company/company.service';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    SimpleNotificationsModule.forRoot(),
   ],
   declarations: [
     AppComponent,

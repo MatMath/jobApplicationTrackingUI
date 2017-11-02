@@ -36,7 +36,7 @@
     <hr *ngIf="!newCie" />
 
     <div *ngIf="newCie" class="form-group row">
-      <label class="col-3 col-form-label" for="name">Location</label>
+      <label class="col-3 col-form-label" for="name">City</label>
       <input type="text" class="form-control col-9" id="location"
              required
              [(ngModel)]="base.location" name="location"
@@ -156,8 +156,9 @@
     </div>
 
     <div class="row">
-      <button type="button" class="btn btn-success" (click)="onSubmit(newApplication);" [disabled]="!newApplication.form.valid">Submit</button>
+      <button type="button" class="btn btn-success" (click)="onSubmit(newApplication);" [disabled]="!newApplication.form.valid || submitting">Submit</button>
     </div>
   </form>
 
 </div>
+<simple-notifications [options]="options"></simple-notifications>

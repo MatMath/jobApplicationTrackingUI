@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -66,8 +67,11 @@ export class DashboardComponent implements OnInit {
   newCie:boolean = true;
   id:string;
   submitted: boolean = false;
+  template: '<simple-notifications [options]="options"></simple-notifications>'
+  submitting: boolean = false;
 
   constructor(
+    private _service: NotificationsService,
     private router: Router,
     private route: ActivatedRoute,
     private dashboardService: DashboardService,
@@ -75,15 +79,21 @@ export class DashboardComponent implements OnInit {
     private companyService: CompanyService
   ) { }
 
+  public options = {
+        position: ["top", "left"],
+        timeOut: 0,
+        lastOnBottom: true,
+    };
+
   ngOnInit(): void {
     this.genericService.getCompanyList()
-      .then(companyList => {
-        this.companyList = companyList;
-      });
+      .then(companyList => { this.companyList = companyList; })
+      .catch(() => this._service.error( 'Error', 'Gerring the Company list'));
+
     this.genericService.getRecrutersList()
-      .then(list => {
-        this.RecrutersList = list;
-      });
+      .then(list => { this.RecrutersList = list; })
+      .catch(() => this._service.error( 'Error', 'Gerring the Recruiters list'));
+
     this.route.params.subscribe(params => {
        this.id = params['id'];
        if (this.id) {
@@ -91,7 +101,8 @@ export class DashboardComponent implements OnInit {
            .then(data => {
              this.base = data;
              this.newCie = true;
-           });
+           })
+           .catch(() => this._service.error( 'Error', 'Gerring the Job info'));;
        }
     });
   }
@@ -133,6 +144,7 @@ export class DashboardComponent implements OnInit {
     item.participants = [...item.participants, name];
   }
   onSubmit(form):void {
+    this.submitting = true;
     this.base.applicationType = (this.base.recruiters) ? 'Recruiters' : 'Direct';
     this.base.location = (this.base.location) ? this.base.location: this.activeCie.location;
     // Check if New Cie, if new Cie then Merge the data. + Submit the Cie.
@@ -141,12 +153,18 @@ export class DashboardComponent implements OnInit {
       //Submit New Cie with basic information.
       this.companyService.saveCie(this.activeCie)
         .then(data => { this.activeCie = this.emptyCie; })
+        .catch(err => this._service.error( 'Could not save this new Company', err))
     }
     // Convert data and Post it.
     this.dashboardService.saveJob(this.base).then(answer => {
       this.submitted = true;
       this.base = this.emptyObject;
       form.reset();
+      this.submitting = false;
+    })
+    .catch((err:string) => {
+      this._service.error( 'Could not save the file', err)
+      this.submitting = false;
     });
   }
 
