@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NotificationsService } from 'angular2-notifications';
 
 // Types
 import { CompanySchema, RecruitersInfoSchema } from '../classDefinition';
@@ -45,8 +46,15 @@ export class CompanyComponent implements OnInit {
   activeRecruters: RecruitersInfoSchema = {...this.emptyRecruters};
   showRecruters:boolean = false;
   showList:boolean = true;
+  submitting:boolean = false;
+  public options = {
+    position: ["top", "left"],
+    timeOut: 0,
+    lastOnBottom: true,
+  };
 
   constructor(
+    private notification: NotificationsService,
     private genericService: GenericService,
     private companyService: CompanyService,
     private modalService: NgbModal,
@@ -57,11 +65,13 @@ export class CompanyComponent implements OnInit {
     this.genericService.getCompanyList()
       .then(companyList => {
         this.companyList = companyList;
-      });
+      })
+      .catch(() => this.notification.error( 'Error', 'Getting the Company list'));
     this.genericService.getRecrutersList()
       .then(list => {
         this.RecrutersList = list;
-      });
+      })
+      .catch(() => this.notification.error( 'Error', 'Getting the Recruiters list'));;
   }
 
   listView():void {
@@ -92,6 +102,7 @@ export class CompanyComponent implements OnInit {
         this.companyList = this.removeIdFromList(this.companyList, id);
         this.activeCie = {...this.emptyCie};
       })
+      .catch(() => this.notification.error( 'Error', 'Deleting data unsuccessful'));
   }
   editThisCie(company:CompanySchema):void {
     this.activeCie = company;
@@ -102,6 +113,8 @@ export class CompanyComponent implements OnInit {
   }
 
   submitCie():void {
+    this.submitting = true;
+    const pleaseWait = this.notification.success( 'Saving', '');
     this.activeCie.gps.properties.name = this.activeCie.name;
     this.companyService.saveCie(this.activeCie)
       .then(data => {
@@ -110,7 +123,14 @@ export class CompanyComponent implements OnInit {
         }
         this.activeCie = {...this.emptyCie};
         this.listView();
+        this.submitting = false;
+        this.notification.remove(pleaseWait.id);
       })
+      .catch(() => {
+        this.notification.remove(pleaseWait.id);
+        this.notification.error( 'Error', 'Submitting the data');
+        this.submitting = false;
+      });
   }
 
   // Recruiters Section
@@ -127,6 +147,7 @@ export class CompanyComponent implements OnInit {
         this.RecrutersList = this.removeIdFromList(this.RecrutersList, id);
         this.activeRecruters = {...this.emptyRecruters};
       })
+      .catch(() => this.notification.error( 'Error', 'Deleting data unsuccessful'));
   }
   editThisRecruters(item:RecruitersInfoSchema):void {
     this.activeCie = this.emptyCie;
@@ -136,6 +157,8 @@ export class CompanyComponent implements OnInit {
     this.showRecruters = true;
   }
   submitRecru():void {
+    this.submitting = true;
+    const pleaseWait = this.notification.success( 'Saving', '');
     this.companyService.saveRecru(this.activeRecruters)
       .then(data => {
         if (!this.activeRecruters._id) {
@@ -143,7 +166,14 @@ export class CompanyComponent implements OnInit {
         }
         this.activeRecruters = {...this.emptyRecruters};
         this.listView();
+        this.submitting = false;
+        this.notification.remove(pleaseWait.id);
       })
+      .catch(() => {
+        this.notification.remove(pleaseWait.id);
+        this.notification.error( 'Error', 'Submitting the data');
+        this.submitting = false;
+      });
   }
 
 }

@@ -69,7 +69,7 @@
              #name="ngModel">
     </div>
     <div class="row">
-      <button type="submit" class="btn btn-success" [disabled]="!newApplication.form.valid">Submit</button>
+      <button type="submit" class="btn btn-success" [disabled]="!newApplication.form.valid || submitting">Submit</button>
     </div>
   </form>
 </div>
@@ -97,7 +97,7 @@
     </div>
 
     <div class="row">
-      <button type="submit" class="btn btn-success" [disabled]="!newApplication.form.valid">Submit</button>
+      <button type="submit" class="btn btn-success" [disabled]="!newApplication.form.valid || submitting">Submit</button>
     </div>
   </form>
 </div>
@@ -108,3 +108,4 @@
     <button class="btn btn-info" (click)="listView()">List View</button>
   </div>
 </div>
+<simple-notifications [options]="options"></simple-notifications>

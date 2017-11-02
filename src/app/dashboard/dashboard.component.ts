@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit {
   submitting: boolean = false;
 
   constructor(
-    private _service: NotificationsService,
+    private notification: NotificationsService,
     private router: Router,
     private route: ActivatedRoute,
     private dashboardService: DashboardService,
@@ -80,19 +80,19 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   public options = {
-        position: ["top", "left"],
-        timeOut: 0,
-        lastOnBottom: true,
-    };
+    position: ["top", "left"],
+    timeOut: 0,
+    lastOnBottom: true,
+  };
 
   ngOnInit(): void {
     this.genericService.getCompanyList()
       .then(companyList => { this.companyList = companyList; })
-      .catch(() => this._service.error( 'Error', 'Gerring the Company list'));
+      .catch(() => this.notification.error( 'Error', 'Gerring the Company list'));
 
     this.genericService.getRecrutersList()
       .then(list => { this.RecrutersList = list; })
-      .catch(() => this._service.error( 'Error', 'Gerring the Recruiters list'));
+      .catch(() => this.notification.error( 'Error', 'Gerring the Recruiters list'));
 
     this.route.params.subscribe(params => {
        this.id = params['id'];
@@ -102,7 +102,7 @@ export class DashboardComponent implements OnInit {
              this.base = data;
              this.newCie = true;
            })
-           .catch(() => this._service.error( 'Error', 'Gerring the Job info'));;
+           .catch(() => this.notification.error( 'Error', 'Gerring the Job info'));;
        }
     });
   }
@@ -145,6 +145,7 @@ export class DashboardComponent implements OnInit {
   }
   onSubmit(form):void {
     this.submitting = true;
+    const pleaseWait = this.notification.success( 'Saving', '');
     this.base.applicationType = (this.base.recruiters) ? 'Recruiters' : 'Direct';
     this.base.location = (this.base.location) ? this.base.location: this.activeCie.location;
     // Check if New Cie, if new Cie then Merge the data. + Submit the Cie.
@@ -152,8 +153,11 @@ export class DashboardComponent implements OnInit {
       this.base.company = this.activeCie.name;
       //Submit New Cie with basic information.
       this.companyService.saveCie(this.activeCie)
-        .then(data => { this.activeCie = this.emptyCie; })
-        .catch(err => this._service.error( 'Could not save this new Company', err))
+        .then(data => {
+          this.activeCie = this.emptyCie;
+          this.notification.success( 'New company saved', '', { timeOut: 2000, showProgressBar: true } )
+        })
+        .catch(err => this.notification.error( 'Could not save this new Company', err))
     }
     // Convert data and Post it.
     this.dashboardService.saveJob(this.base).then(answer => {
@@ -161,9 +165,11 @@ export class DashboardComponent implements OnInit {
       this.base = this.emptyObject;
       form.reset();
       this.submitting = false;
+      this.notification.remove(pleaseWait.id);
     })
     .catch((err:string) => {
-      this._service.error( 'Could not save the file', err)
+      this.notification.remove(pleaseWait.id);
+      this.notification.error( 'Could not save the file', err)
       this.submitting = false;
     });
   }
