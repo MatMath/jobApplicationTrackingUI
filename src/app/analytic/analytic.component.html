@@ -13,10 +13,19 @@ Add a Search box (Here):
     <button class="btn btn-danger" (click)="confirmDelete(job)">Delete</button>
     <button class="btn btn-info" (click)="goToEditJobDetails(job._id)">Edit</button>
   </div>
-  <div class="col-2"> {{job.company}} </div>
+  <div class="col-1">
+    <i class="text-success fa fa-check" *ngIf="job.application"></i>
+    <i class="text-danger fa fa-ban" *ngIf="!job.application"></i>
+    <i class="text-success fa fa-commenting" *ngIf="job.answer_receive"></i>
+    <span *ngIf="job.answer_receive">{{job.meeting.length}}</span>
+    <i class="text-danger fa fa-commenting" *ngIf="!job.answer_receive"></i>
+  </div>
+  <div class="col-2">
+    {{job.company}}
+  </div>
   <div class="col-2"> {{job.recruiters}} </div>
   <div class="col-2"> {{job.title}} </div> <!-- todo, add ngClass -->
-  <div class="col-4"> {{job.location}} </div>
+  <div class="col-3"> {{job.location}} </div>
 </div>
 <ngb-pagination class="center" [collectionSize]="collectionSize" (pageChange)="switchPageTo($event)" [pageSize]="pageSize" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
 <div class="error" *ngIf="error">{{error}}</div>

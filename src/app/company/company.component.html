@@ -11,6 +11,7 @@
       <button *ngIf="cie._id" class="btn btn-info" (click)="editThisCie(cie)">Edit</button>
     </div>
     <div class="col-6">
+        <i class="text-success fa fa-map-marker" *ngIf="cie.gps.geometry.coordinates[0] !== 0"></i>
         {{cie.name}} - {{cie.location}}
     </div>
   </div>
