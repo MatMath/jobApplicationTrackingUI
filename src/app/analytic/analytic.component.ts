@@ -10,7 +10,7 @@ import { NgbdModalContent } from '../generic/confirmModal';
 @Component({
   selector: 'my-analytic',
   templateUrl: './analytic.component.html',
-  styleUrls: ['./analytic.component.css']
+  styleUrls: ['./analytic.component.scss']
 })
 export class AnalyticComponent implements OnInit {
   jobList: globalStructureSchema[];

@@ -15,7 +15,7 @@ import { CompanyService } from '../company/company.service';
 @Component({
   selector: 'my-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
   companyList: CompanySchema[] = [];
