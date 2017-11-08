@@ -1,16 +1,16 @@
 <br />
 <div *ngIf="showList">
   <div class="row">
-    <div class="col-1"><button class="btn btn-success" (click)="newCie(true)">New</button></div>
-    <h3>Company list</h3>
+    <div class="col-md-1 col-3"><button class="btn btn-success" (click)="newCie(true)">New</button></div>
+    <div class="col-md-11 col-9"> <h3>Company list</h3> </div>
   </div>
   <br />
   <div class="row" *ngFor='let cie of companyList'>
-    <div class="col-2">
+    <div class="col-3">
       <button *ngIf="cie._id" class="btn btn-danger" (click)="confirmCDelete(cie)">Delete</button>
       <button *ngIf="cie._id" class="btn btn-info" (click)="editThisCie(cie)">Edit</button>
     </div>
-    <div class="col-6">
+    <div class="col-9">
         <i class="text-success fa fa-map-marker" *ngIf="cie.gps.geometry.coordinates[0] !== 0"></i>
         {{cie.name}} - {{cie.location}}
     </div>
@@ -18,16 +18,16 @@
   <br />
   <hr />
   <div class="row">
-    <div class="col-1"><button class="btn btn-success" (click)="newCie(false)">New</button></div>
-    <h3>Recruiters list</h3>
+    <div class="col-md-1 col-3"><button class="btn btn-success" (click)="newCie(false)">New</button></div>
+    <div class="col-md-11 col-9"><h3>Recruiters list</h3></div>
   </div>
   <br />
   <div class="row" *ngFor='let item of RecrutersList'>
-    <div class="col-2">
+    <div class="col-3">
       <button *ngIf="item._id" class="btn btn-danger" (click)="confirmRDelete(item)">Delete</button>
       <button *ngIf="item._id" class="btn btn-info" (click)="editThisRecruters(item)">Edit</button>
     </div>
-    <div class="col-6">
+    <div class="col-9">
         {{item.cie}} - {{item.name}}
     </div>
   </div>
