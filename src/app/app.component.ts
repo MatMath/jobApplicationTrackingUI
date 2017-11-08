@@ -3,9 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'my-root',
   template: `
-    <h1>{{title}}</h1>
-    <div class="header-bar"></div>
-    <nav>
+    <nav class="container">
       <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
       <a routerLink="/analytic" routerLinkActive="active">Analytic</a>
       <a routerLink="/cie" routerLinkActive="active">Companies</a>
@@ -14,6 +12,4 @@ import { Component } from '@angular/core';
   `,
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'Job tracking';
-}
+export class AppComponent { }
