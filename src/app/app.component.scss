@@ -1,20 +1,45 @@
 $buttoncolor: #333;
-nav {
-  overflow: hidden;
-  background-color: $buttoncolor;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  margin-bottom: 30px;
-  a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    &:hover {
-      background-color: darken($buttoncolor,50%)
+
+.wrapper {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: minmax(50px, auto);
+  grid-template-areas:
+    "nav"
+    "main"
+    "main"
+    "ft";
+
+  nav {
+    background-color: $buttoncolor;
+    grid-area: nav;
+    align-self: flex-start;
+    height: 50px;
+    a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      &:hover {
+        background-color: darken($buttoncolor,50%)
+      }
     }
+  }
+
+  .content {
+    align-content: flex-start;
+    grid-area: main;
+    min-height: 90vh;
+    background-color: #fff;
+  }
+  
+  footer {
+    grid-area: ft;
+    background-color: $buttoncolor;
+    height: 30px;
+    align-self: flex-end;
   }
 }
