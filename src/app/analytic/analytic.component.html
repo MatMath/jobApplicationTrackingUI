@@ -2,12 +2,12 @@
 Add a Search box (Here):
 <div class="row">
   <div class="col-md-3 col-6"> Options </div>
-  <div class="col-md-2 col-6"> Cie </div>
+  <div class="col-md-3 col-6"> Cie </div>
   <div class="col-md-3 col-6"> Recruiters </div>
   <div class="col-md-3 col-6"> Title </div>
 </div>
 <div class="row" *ngFor="let job of jobList | slice:fromNbr:toNbr">
-  <div class="col-md-3 col-4">
+  <div class="col-md-2 col-4">
     <button class="btn btn-danger" (click)="confirmDelete(job)">Delete</button>
     <button class="btn btn-info" (click)="goToEditJobDetails(job._id)">Edit</button>
   </div>
