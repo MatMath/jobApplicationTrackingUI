@@ -23,6 +23,8 @@ import { JobListService } from './joblist/joblist.service';
 import { CompanyComponent } from './company/company.component';
 import { CompanyService } from './company/company.service';
 
+import { GraphComponent } from './graph/graph.component';
+
 @NgModule({
   imports: [
     NgbModule.forRoot(),
@@ -39,6 +41,7 @@ import { CompanyService } from './company/company.service';
     JobListComponent,
     CompanyComponent,
     NgbdModalContent,
+    GraphComponent,
   ],
   providers: [
     DashboardService,
