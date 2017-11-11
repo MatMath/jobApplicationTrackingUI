@@ -4,15 +4,15 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationsService } from 'angular2-notifications';
 
 import { globalStructureSchema } from '../classDefinition';
-import { AnalyticService } from './analytic.service';
+import { JobListService } from './joblist.service';
 import { NgbdModalContent } from '../generic/confirmModal';
 
 @Component({
-  selector: 'my-analytic',
-  templateUrl: './analytic.component.html',
-  styleUrls: ['./analytic.component.scss']
+  selector: 'my-joblist',
+  templateUrl: './joblist.component.html',
+  styleUrls: ['./joblist.component.scss']
 })
-export class AnalyticComponent implements OnInit {
+export class JobListComponent implements OnInit {
   jobList: globalStructureSchema[];
   error: any;
 
@@ -32,12 +32,12 @@ export class AnalyticComponent implements OnInit {
   constructor(
     private notification: NotificationsService,
     private router: Router,
-    private analyticService: AnalyticService,
+    private joblistService: JobListService,
     private modalService: NgbModal,
   ) { }
 
   ngOnInit(): void {
-    this.analyticService.getJobList()
+    this.joblistService.getJobList()
     .then((data) => {
       this.jobList = data;
       this.collectionSize = data.length;
@@ -47,7 +47,7 @@ export class AnalyticComponent implements OnInit {
 
   deleteThisId(id:string): void {
     const pleaseWait = this.notification.success( 'Networking...', '');
-    this.analyticService.deleteListId(id)
+    this.joblistService.deleteListId(id)
     .then((data) => {
       this.jobList = this.removeIdFromList(this.jobList, id);
       //Pop the ID from the Object instead of doing a call.

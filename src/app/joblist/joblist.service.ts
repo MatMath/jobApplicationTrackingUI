@@ -7,7 +7,7 @@ import { globalStructureSchema } from '../classDefinition';
 import { AppSettings } from '../config';
 
 @Injectable()
-export class AnalyticService {
+export class JobListService {
   private baseUrl:string = AppSettings.API_ENDPOINT;
   private jobUrl = `${this.baseUrl}/list`;
 

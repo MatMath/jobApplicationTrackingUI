@@ -3,14 +3,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AnalyticComponent } from './analytic/analytic.component';
+import { JobListComponent } from './joblist/joblist.component';
 import { CompanyComponent } from './company/company.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'dashboard/:id', component: DashboardComponent },
-  { path: 'analytic', component: AnalyticComponent },
+  { path: 'joblist', component: JobListComponent },
   { path: 'cie', component: CompanyComponent }
 ];
 

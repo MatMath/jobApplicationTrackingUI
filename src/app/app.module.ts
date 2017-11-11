@@ -17,8 +17,8 @@ import { NgbdModalContent } from './generic/confirmModal';
 import { DashboardService } from './dashboard/dashboard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-import { AnalyticComponent } from './analytic/analytic.component';
-import { AnalyticService } from './analytic/analytic.service';
+import { JobListComponent } from './joblist/joblist.component';
+import { JobListService } from './joblist/joblist.service';
 
 import { CompanyComponent } from './company/company.component';
 import { CompanyService } from './company/company.service';
@@ -36,13 +36,13 @@ import { CompanyService } from './company/company.service';
   declarations: [
     AppComponent,
     DashboardComponent,
-    AnalyticComponent,
+    JobListComponent,
     CompanyComponent,
     NgbdModalContent,
   ],
   providers: [
     DashboardService,
-    AnalyticService,
+    JobListService,
     GenericService,
     CompanyService,
     AppSettings,
