@@ -20,8 +20,9 @@ import { CompanyService } from '../company/company.service';
 export class DashboardComponent implements OnInit {
   companyList: CompanySchema[] = [];
   RecrutersList: RecruitersInfoSchema[] = [];
-  websiteList: string[] = ['', 'Indeed', 'Linkedin', 'ZipRecruters'];
-  typeOfPosition: string[] = ['Front End Eng', 'NodeJs Eng', 'Senior Front-end', 'Senior Backend', 'Fullstack', 'Senior Fullstack'];
+  websiteList: string[] = ['', 'Indeed', 'Linkedin', 'ZipRecruters', 'IrishJob.ie','Email', 'NA'];  // TODO: get from API
+  typeOfPosition: string[] = ['Front End Eng', 'NodeJs Eng', 'Senior Front-end', 'Senior Backend', 'Fullstack', 'Senior Fullstack']; // TODO: get from API
+  companyNameList: string[];
   emptyObject: globalStructureSchema = {
     _id: undefined,
     location: undefined,
@@ -87,7 +88,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.genericService.getCompanyList()
-      .then(companyList => { this.companyList = companyList; })
+      .then(companyList => {
+        this.companyList = companyList;
+        this.companyNameList = companyList.map(item => item.name);
+      })
       .catch(() => this.notification.error( 'Error', 'Gerring the Company list'));
 
     this.genericService.getRecrutersList()
@@ -114,14 +118,21 @@ export class DashboardComponent implements OnInit {
       .map(term => term.length < 1 ? []
         : this.typeOfPosition.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
 
+  listCie = (text$: Observable<string>) =>
+    text$
+      .debounceTime(100)
+      .distinctUntilChanged()
+      .map(term => term.length < 1 ? []
+          : this.companyNameList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+
   toggleCie():void {
     this.newCie = !this.newCie;
     this.activeCie = this.emptyCie; // Always reset if we switch so it is easier.
   }
-  spreadCie(event):void {
+  spreadCie(name):void {
     // I can return an object OR a String but It cannot be match/set active on both (object Or string).
     // Take the tring and find the location associated with it.
-    this.base.location = (this.base.location)? this.base.location: this.findLocation(event.target.value);
+    this.base.location = (this.base.location)? this.base.location: this.findLocation(name);
   }
   private findLocation(name:string):string {
     for(let i = 0; i < this.companyList.length; i++) {

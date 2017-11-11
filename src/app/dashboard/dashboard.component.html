@@ -7,14 +7,12 @@
         <label class="col-form-label" for="company">Select Company</label>
       </div>
       <div class="content-columns">
-        <select class="form-control" id="company"
+        <input type="text" class="form-control" id="title"
           required
-          (change)="spreadCie($event)"
+          (keyup.enter)="spreadCie(company.value)"
+          [ngbTypeahead]="listCie"
           [(ngModel)]="base.company" name="company"
           #company="ngModel">
-          <option [value]=""></option>
-          <option *ngFor="let cie of companyList" [value]="cie.name">{{cie.name}}</option>
-        </select>
         <div [hidden]="company.valid || company.pristine" class="alert alert-danger"> Company is required </div>
       </div>
     </div>
@@ -26,6 +24,7 @@
       <div class="content-columns">
         <input type="text" class="form-control" id="name"
           required
+          [ngbTypeahead]="listCie"
           [(ngModel)]="activeCie.name" name="name"
           #name="ngModel">
         <div [hidden]="name.valid || name.pristine" class="alert alert-danger"> Company is required </div>
