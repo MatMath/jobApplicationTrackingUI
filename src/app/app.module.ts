@@ -23,7 +23,11 @@ import { JobListService } from './joblist/joblist.service';
 import { CompanyComponent } from './company/company.component';
 import { CompanyService } from './company/company.service';
 
-import { GraphComponent } from './graph/graph.component';
+import { GlobGraphComponent } from './graph/graph.component';
+import { D3Service, D3_DIRECTIVES } from './graph/d3';
+
+import { GraphComponent } from './graph/visuals/graph/graph.component';
+import { SHARED_VISUALS } from './graph/visuals/shared';
 
 @NgModule({
   imports: [
@@ -42,6 +46,9 @@ import { GraphComponent } from './graph/graph.component';
     CompanyComponent,
     NgbdModalContent,
     GraphComponent,
+    GlobGraphComponent,
+    ...SHARED_VISUALS,
+    ...D3_DIRECTIVES
   ],
   providers: [
     DashboardService,
@@ -49,6 +56,7 @@ import { GraphComponent } from './graph/graph.component';
     GenericService,
     CompanyService,
     AppSettings,
+    D3Service,
   ],
   bootstrap: [AppComponent],
   entryComponents: [ NgbdModalContent ]
