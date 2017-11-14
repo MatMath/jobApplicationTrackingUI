@@ -166,6 +166,26 @@
         </div>
         <br />
       </div>
+
+      <!-- Received answer -->
+      <div class="row">
+        <label class="label-columns col-form-label" for="name">Received an Offer? {{base.offer}}</label>
+        <div class="btn-group label-columns" ngbRadioGroup name="apply" [(ngModel)]="base.offer">
+          <label ngbButtonLabel class="btn btn-secondary" [ngClass]="{'btn-success': base.offer === 'Yes'}"> <input ngbButton type="radio" [value]="'Yes'"> Yes </label>
+          <label ngbButtonLabel class="btn btn-secondary" [ngClass]="{'btn-danger': base.offer === 'No'}"> <input ngbButton type="radio" [value]="'No'"> No </label>
+          <label ngbButtonLabel class="btn btn-secondary" [ngClass]="{'btn-danger': base.offer === 'Rejected'}"> <input ngbButton type="radio" [value]="'Rejected'"> Rejected </label>
+        </div>
+        <div *ngIf="base.offer === 'Rejected'"> It is probably for the better... </div>
+      </div>
+
+      <div class="row" *ngIf="base.offer === 'Yes'">
+        <label class="label-columns col-form-label" for="name">Received an Accept/Reject?</label>
+        <div class="btn-group label-columns" ngbRadioGroup name="apply" [(ngModel)]="base.acceptedOffer">
+          <label ngbButtonLabel class="btn btn-secondary" [ngClass]="{'btn-success': base.acceptedOffer}"> <input ngbButton type="radio" [value]="true"> Yes </label>
+          <label ngbButtonLabel class="btn btn-secondary" [ngClass]="{'btn-danger': !base.acceptedOffer}"> <input ngbButton type="radio" [value]="false"> Refused </label>
+        </div>
+      </div>
+
     </div>
     <div class="row" *ngIf="base.application">
       <div class="col-12 text-center">

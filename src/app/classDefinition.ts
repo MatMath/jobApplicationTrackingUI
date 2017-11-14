@@ -48,4 +48,6 @@ export class globalStructureSchema {
   meeting: MeetingInfoSchema[];
   notes: string;
   cover_letter: string;
+  offer: string;
+  acceptedOffer: boolean;
 };

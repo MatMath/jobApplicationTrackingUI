@@ -38,6 +38,8 @@ export class DashboardComponent implements OnInit {
     meeting: [],
     notes: undefined,
     cover_letter: undefined,
+    offer: undefined,
+    acceptedOffer: undefined,
   };
   base: globalStructureSchema = {...this.emptyObject};
   emptyCie: CompanySchema = {
