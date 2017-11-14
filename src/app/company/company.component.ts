@@ -42,6 +42,7 @@ export class CompanyComponent implements OnInit {
     _id: undefined,
     cie: undefined,
     name: undefined,
+    notes: undefined,
   };
   activeRecruters: RecruitersInfoSchema = {...this.emptyRecruters};
   showRecruters:boolean = false;

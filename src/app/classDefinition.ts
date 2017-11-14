@@ -22,6 +22,7 @@ export class RecruitersInfoSchema {
   _id: string;
   cie: string;
   name: string;
+  notes: string;
 };
 
 export class MeetingInfoSchema {
