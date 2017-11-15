@@ -6,7 +6,9 @@ Add a Search box (Here):
   <div class="col-md-3 col-6"> Recruiters </div>
   <div class="col-md-4 col-6"> Title </div>
 </div>
-<div class="row oddColor" [ngClass]="{strikeText: job.offer === 'Rejected'}" *ngFor="let job of jobList | slice:fromNbr:toNbr">
+<div class="row"
+  [ngClass]="{strikeText: job.offer === 'Rejected', oddColor: job.offer !== 'Rejected'}"
+  *ngFor="let job of jobList | slice:fromNbr:toNbr">
   <div class="col-md-2 col-6" (click)="job.show = !job.show">
     <i class="text-success fa fa-check" *ngIf="job.application"></i>
     <i class="text-danger fa fa-ban" *ngIf="!job.application"></i>
@@ -22,7 +24,6 @@ Add a Search box (Here):
     <button class="btn btn-danger" (click)="confirmDelete(job)">Delete</button>
     <button class="btn btn-info" (click)="goToEditJobDetails(job._id)">Edit</button>
   </div>
-  <hr class="d-none d-md-block d-xl-none" />
 </div>
 <ngb-pagination class="center" [collectionSize]="collectionSize" (pageChange)="switchPageTo($event)" [pageSize]="pageSize" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
 <div class="error" *ngIf="error">{{error}}</div>

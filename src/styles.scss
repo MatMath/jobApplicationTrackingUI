@@ -2,14 +2,19 @@
 @import 'variables';
 @import '~bootstrap/scss/bootstrap';
 
-.oddColor:nth-child(odd) {background: #CCC}
+$funPurple: #bb22bb;
+
+.oddColor:nth-child(odd) { background-color: #CCC }
+.strikeText {
+  color: #FFF;
+  text-decoration: line-through;
+  background-color: $funPurple;
+  &:nth-child(odd) { background-color: darken($funPurple, 10%) }
+}
+
 .tableHeader {
   background-color: black;
   color: white;
   text-align: center;
   font-weight: bold;
-}
-.strikeText{
-  text-decoration: line-through;
-  color: red;
 }
