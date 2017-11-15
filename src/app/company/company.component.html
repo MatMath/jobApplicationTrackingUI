@@ -5,12 +5,12 @@
     <div class="col-md-11 col-9"> <h3>Company list - <span *ngIf="companyList">{{companyList.length}}</span></h3> </div>
   </div>
   <br />
-  <div class="row" *ngFor='let cie of companyList; let i = index'>
+  <div class="row oddColor" *ngFor='let cie of companyList; let i = index'>
     <div class="col-4" (click)="cie.show = !cie.show">
         <i class="text-success fa fa-map-marker" *ngIf="cie.gps.geometry.coordinates[0] !== 0"></i>
         {{cie.name}}
     </div>
-    <div class="col-4" (click)="cie.show = !cie.show">{{cie.location}} </div>
+    <div class="col-8" (click)="cie.show = !cie.show">{{cie.location}} </div>
     <div class="col-12" *ngIf="cie.show">
       <button *ngIf="cie._id" class="btn btn-danger" (click)="confirmCDelete(cie)">Delete</button>
       <button *ngIf="cie._id" class="btn btn-info" (click)="editThisCie(cie)">Edit</button>
@@ -23,7 +23,7 @@
     <div class="col-md-11 col-9"><h3>Recruiters list - <span *ngIf="RecrutersList">{{RecrutersList.length}}</span></h3></div>
   </div>
   <br />
-  <div class="row" *ngFor='let item of RecrutersList'>
+  <div class="row oddColor" *ngFor='let item of RecrutersList'>
     <div class="col-4" (click)="item.show = !item.show"> {{item.cie}} </div>
     <div class="col-8" (click)="item.show = !item.show">{{item.name}} </div>
     <div class="col-12" *ngIf="item.show">

@@ -1,3 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'variables';
 @import '~bootstrap/scss/bootstrap';
+
+.oddColor:nth-child(odd) {background: #CCC}
+.tableHeader {
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+.strikeText{
+  text-decoration: line-through;
+  color: red;
+}
