@@ -18,7 +18,7 @@ export class JobListComponent implements OnInit {
 
   // Pagination param
   collectionSize: number;
-  pageSize:number = 20;
+  pageSize:number = 30;
   page: number = 1;
   fromNbr:number = 0;
   toNbr:number = this.pageSize;
