@@ -56,3 +56,8 @@ export class userParamStructure {
   website: string[];
   title: string[];
 }
+
+export class barCharData {
+  name:string;
+  value:number;
+}

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import APP_CONFIG from './graph.config';
 import { Node, Link } from './d3';
 
+import { barCharData } from '../classDefinition';
+
 @Component({
   selector: 'my-graph-page',
   templateUrl: './graph.component.html',
@@ -11,7 +13,14 @@ export class GlobGraphComponent implements OnInit{
   nodes: Node[] = [];
   links: Link[] = [];
   chartData: Array<any>;
-  smallStepGraph: number[] = [100, 120, 130, 140, 110, 60, 70];
+  smallStepGraph: barCharData[] = [
+  {name: "Locke",    value:  4},
+  {name: "Reyes",    value:  8},
+  {name: "Ford",     value: 15},
+  {name: "Jarrah",   value: 16},
+  {name: "Shephard", value: 23},
+  {name: "Kwon",     value: 42}
+];
 
   constructor() {
     const N = APP_CONFIG.N;
