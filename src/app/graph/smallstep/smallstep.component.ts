@@ -61,18 +61,23 @@ export class SmallStepComponent implements OnInit {
     const x = d3.scaleBand()
       .domain([0, d3.max(data, d => d.value)])
       .range([0, width])
+      .padding(0.1)
       .round(true);
 
+    x.domain(data.map(d => d.name));
+    y.domain([0, d3.max(data, d => d.value)]);
 
-      x.domain(data.map(function(d) { return d.name; }));
-      y.domain([0, d3.max(data, function(d) { return d.value; })]);
+    const yAxis = d3.axisLeft(y);
+    const xAxis = d3.axisBottom(x).tickFormat(d => d);
 
       chart.append("g")
           .attr("class", "x axis")
-          .attr("transform", "translate(0," + height + ")");
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis);
 
       chart.append("g")
-          .attr("class", "y axis");
+          .attr("class", "y axis")
+          .call(yAxis);
 
       chart.selectAll(".bar")
           .data(data)
