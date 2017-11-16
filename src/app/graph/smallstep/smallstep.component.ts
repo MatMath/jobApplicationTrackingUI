@@ -67,8 +67,8 @@ export class SmallStepComponent implements OnInit {
     x.domain(data.map(d => d.name));
     y.domain([0, d3.max(data, d => d.value)]);
 
-    const yAxis = d3.axisLeft(y);
     const xAxis = d3.axisBottom(x).tickFormat(d => d);
+    const yAxis = d3.axisLeft(y).ticks(10, "%");
 
       chart.append("g")
           .attr("class", "x axis")
@@ -77,7 +77,13 @@ export class SmallStepComponent implements OnInit {
 
       chart.append("g")
           .attr("class", "y axis")
-          .call(yAxis);
+          .call(yAxis)
+          .append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 6)
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Frequency");
 
       chart.selectAll(".bar")
           .data(data)
