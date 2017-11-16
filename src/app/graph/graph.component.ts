@@ -14,12 +14,24 @@ export class GlobGraphComponent implements OnInit{
   links: Link[] = [];
   chartData: Array<any>;
   smallStepGraph: barCharData[] = [
-  {name: "Locke",    value:  4},
-  {name: "Reyes",    value:  8},
-  {name: "Ford",     value: 15},
-  {name: "Jarrah",   value: 16},
-  {name: "Shephard", value: 23},
-  {name: "Kwon",     value: 42}
+  {name: "a", value: 1},
+  {name: "b", value: 2},
+  {name: "c", value: 3},
+  {name: "d", value: 4},
+  {name: "e", value: 5},
+  {name: "f", value: 6},
+  {name: "g", value: 15},
+  {name: "h", value: 5},
+  {name: "i", value: 4},
+  {name: "j", value: 6},
+  {name: "K", value: 2},
+  {name: "l", value: 3},
+  {name: "M", value: 4},
+  {name: "N", value: 5},
+  {name: "O", value: 4},
+  {name: "P", value: 15},
+  {name: "Q", value: 4},
+  {name: "R", value: 2}
 ];
 
   constructor() {
