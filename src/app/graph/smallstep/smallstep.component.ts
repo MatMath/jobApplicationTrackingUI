@@ -44,14 +44,14 @@ export class SmallStepComponent implements OnInit {
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
-          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+         .attr("transform", `translate(${margin.left},${margin.top})`)
+         .attr("class", `innerComponent`);
 
   }
 
   updateChart() {
-    const element = this.chartContainer.nativeElement;
-    const { data, width, height } = this;
-    const chart = d3.select(element);
+    const { data, width, height, margin } = this;
+    const chart = d3.select(".innerComponent");
     const barWidth = width / data.length;
 
     const y = d3.scaleLinear()
@@ -72,7 +72,7 @@ export class SmallStepComponent implements OnInit {
 
       chart.append("g")
           .attr("class", "x axis")
-          .attr("transform", "translate(0," + height + ")")
+          .attr("transform", `translate(0,${height})`)
           .call(xAxis);
 
       chart.append("g")
