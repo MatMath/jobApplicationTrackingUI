@@ -31,6 +31,8 @@ import { GraphComponent } from './graph/visuals/graph/graph.component';
 import { SHARED_VISUALS } from './graph/visuals/shared';
 
 import { BarChartComponent } from './graph/BarChart/bar-chart.component';
+import { SmallStepComponent } from './graph/smallstep/smallstep.component';
+
 
 @NgModule({
   imports: [
@@ -52,7 +54,8 @@ import { BarChartComponent } from './graph/BarChart/bar-chart.component';
     GlobGraphComponent,
     ...SHARED_VISUALS,
     ...D3_DIRECTIVES,
-    BarChartComponent
+    BarChartComponent,
+    SmallStepComponent
   ],
   providers: [
     DashboardService,

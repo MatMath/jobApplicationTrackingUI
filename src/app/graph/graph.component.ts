@@ -11,6 +11,7 @@ export class GlobGraphComponent implements OnInit{
   nodes: Node[] = [];
   links: Link[] = [];
   chartData: Array<any>;
+  smallStepGraph: number[] = [100, 120, 130, 140, 110, 60, 70];
 
   constructor() {
     const N = APP_CONFIG.N;
