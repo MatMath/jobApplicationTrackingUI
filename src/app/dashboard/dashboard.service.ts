@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { globalStructureSchema } from '../classDefinition';
+import { globalStructureSchema, userParamStructure } from '../classDefinition';
 import { AppSettings } from '../config';
 
 @Injectable()
@@ -16,6 +16,16 @@ export class DashboardService {
   getJobId(id:string): Promise<globalStructureSchema> {
     return this.http
       .get(`${this.jobUrl}/${id}`)
+      .toPromise()
+      .then((response) => {
+        return response;
+      })
+      .catch(this.handleError);
+  }
+
+  getParam(): Promise<userParamStructure> {
+    return this.http
+      .get(`${this.baseUrl}/param`)
       .toPromise()
       .then((response) => {
         return response;

@@ -51,3 +51,8 @@ export class globalStructureSchema {
   offer: string;
   acceptedOffer: boolean;
 };
+
+export class userParamStructure {
+  website: string[];
+  title: string[];
+}

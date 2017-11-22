@@ -79,11 +79,12 @@
     <div class="form-group row">
       <label class="label-columns col-form-label" for="website">Select Website</label>
       <div class="content-columns">
-        <select class="form-control" id="website"
-                [(ngModel)]="base.website" name="website"
-                #recruiters="ngModel">
-          <option *ngFor="let list of websiteList" [value]="list">{{list}}</option>
-        </select>
+        <input type="text" class="form-control" id="website"
+          required
+          [ngbTypeahead]="listWebsites"
+          [(ngModel)]="base.website" name="website"
+          #website="ngModel">
+          <div [hidden]="website.valid || website.pristine" class="alert alert-danger"> Title is required </div>
       </div>
     </div>
 

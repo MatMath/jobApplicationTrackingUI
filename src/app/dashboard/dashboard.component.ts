@@ -100,6 +100,14 @@ export class DashboardComponent implements OnInit {
       .then(list => { this.RecrutersList = list; })
       .catch(() => this.notification.error( 'Error', 'Gerring the Recruiters list'));
 
+    // TODO: Add Localstorage to avoid calls
+    this.dashboardService.getParam()
+      .then(list => {
+        this.websiteList = list.website;
+        this.typeOfPosition = list.title;
+      })
+      .catch(() => this.notification.error( 'Error', 'Gerring the params'));
+
     this.route.params.subscribe(params => {
        this.id = params['id'];
        if (this.id) {
@@ -119,6 +127,13 @@ export class DashboardComponent implements OnInit {
       .distinctUntilChanged()
       .map(term => term.length < 1 ? []
         : this.typeOfPosition.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+
+  listWebsites = (text$: Observable<string>) =>
+    text$
+      .debounceTime(100)
+      .distinctUntilChanged()
+      .map(term => term.length < 1 ? []
+        : this.websiteList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
 
   listCie = (text$: Observable<string>) =>
     text$
