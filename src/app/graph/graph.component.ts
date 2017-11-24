@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import APP_CONFIG from './graph.config';
 import { Node, Link } from './d3';
+import { NotificationsService } from 'angular2-notifications';
 
 import { barCharData } from '../classDefinition';
+import { GraphService } from './graph.service';
 
 @Component({
   selector: 'my-graph-page',
@@ -13,28 +15,12 @@ export class GlobGraphComponent implements OnInit{
   nodes: Node[] = [];
   links: Link[] = [];
   chartData: Array<any>;
-  smallStepGraph: barCharData[] = [
-  {name: "a", value: 1},
-  {name: "b", value: 2},
-  {name: "c", value: 3},
-  {name: "d", value: 4},
-  {name: "e", value: 5},
-  {name: "f", value: 6},
-  {name: "g", value: 15},
-  {name: "h", value: 5},
-  {name: "i", value: 4},
-  {name: "j", value: 6},
-  {name: "K", value: 2},
-  {name: "l", value: 3},
-  {name: "M", value: 4},
-  {name: "N", value: 5},
-  {name: "O", value: 4},
-  {name: "P", value: 15},
-  {name: "Q", value: 4},
-  {name: "R", value: 2}
-];
+  smallStepGraph: barCharData[];
 
-  constructor() {
+  constructor(
+    private graphService: GraphService,
+    private notification: NotificationsService,
+  ) {
     const N = APP_CONFIG.N;
 
     /** constructing the nodes array */
@@ -55,12 +41,13 @@ export class GlobGraphComponent implements OnInit{
   }
   ngOnInit() {
     // give everything a chance to get loaded before starting the animation to reduce choppiness
-    setTimeout(() => {
-      this.generateData();
-
-      // change the data periodically
-      setInterval(() => this.generateData(), 3000);
-    }, 1000);
+    this.graphService.getTitleWeight().then(data => {
+      console.log('DATA RECEIVE:', data);
+      this.smallStepGraph = data.map(item => ({name: item._id, value: item.count}));
+      console.log(this.smallStepGraph);
+    }).catch(() => this.notification.error( 'Error', 'Gerring the Title info'));
+    this.generateData()
+    
   }
 
   generateData() {

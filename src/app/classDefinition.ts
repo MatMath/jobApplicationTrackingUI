@@ -61,3 +61,8 @@ export class barCharData {
   name:string;
   value:number;
 }
+
+export class titleListForGraph {
+  _id: string;
+  count: number
+}
