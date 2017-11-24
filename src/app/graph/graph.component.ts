@@ -14,7 +14,6 @@ import { GraphService } from './graph.service';
 export class GlobGraphComponent implements OnInit{
   nodes: Node[] = [];
   links: Link[] = [];
-  chartData: Array<any>;
   smallStepGraph: barCharData[];
 
   constructor(
@@ -42,21 +41,7 @@ export class GlobGraphComponent implements OnInit{
   ngOnInit() {
     // give everything a chance to get loaded before starting the animation to reduce choppiness
     this.graphService.getTitleWeight().then(data => {
-      console.log('DATA RECEIVE:', data);
       this.smallStepGraph = data.map(item => ({name: item._id, value: item.count}));
-      console.log(this.smallStepGraph);
     }).catch(() => this.notification.error( 'Error', 'Gerring the Title info'));
-    this.generateData()
-    
-  }
-
-  generateData() {
-    this.chartData = [];
-    for (let i = 0; i < (8 + Math.floor(Math.random() * 10)); i++) {
-      this.chartData.push([
-        `Index ${i}`,
-        Math.floor(Math.random() * 100)
-      ]);
-    }
   }
 }

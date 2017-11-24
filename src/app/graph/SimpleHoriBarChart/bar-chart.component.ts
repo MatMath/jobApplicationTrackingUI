@@ -32,7 +32,7 @@ export class SimpleHoriBarChart implements OnInit, OnChanges {
         const width = ctx.measureText(curr.name).width;
         return (prev > width)? prev: width;
       }, 10);
-      this.labelWidth += 10;
+      this.labelWidth += 10; // padding
       this.updateChart();
     }
   }

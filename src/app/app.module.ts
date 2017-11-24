@@ -28,12 +28,7 @@ import { GlobGraphComponent } from './graph/graph.component';
 import { GraphService } from './graph/graph.service';
 import { D3Service, D3_DIRECTIVES } from './graph/d3';
 
-import { GraphComponent } from './graph/visuals/graph/graph.component';
-import { SHARED_VISUALS } from './graph/visuals/shared';
-
-import { SimpleVerticalBarChart } from './graph/SimpleVerticalBarChart/bar-chart.component';
 import { SmallStepComponent } from './graph/smallstep/smallstep.component';
-
 import { SimpleHoriBarChart } from './graph/SimpleHoriBarChart/bar-chart.component';
 
 
@@ -53,11 +48,8 @@ import { SimpleHoriBarChart } from './graph/SimpleHoriBarChart/bar-chart.compone
     JobListComponent,
     CompanyComponent,
     NgbdModalContent,
-    GraphComponent,
     GlobGraphComponent,
-    ...SHARED_VISUALS,
     ...D3_DIRECTIVES,
-    SimpleVerticalBarChart,
     SmallStepComponent,
     SimpleHoriBarChart,
   ],
