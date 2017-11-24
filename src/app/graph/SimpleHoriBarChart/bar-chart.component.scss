@@ -1,10 +1,20 @@
+$barColor: steelblue;
+
 .horichart {
   rect {
-    fill: steelblue;
-  }
+    fill: $barColor;
+  },
+  rect:hover {
+    fill: darken($barColor,20%);
+  },
   text {
     fill: white;
-    font: 10px sans-serif;
+    font: 11px Arial;
     text-anchor: end;
+  },
+  .bartext {
+    fill: black;
+    font: 11px Arial;
+    text-anchor: start;
   }
 }
