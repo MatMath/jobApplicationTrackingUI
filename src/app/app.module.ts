@@ -25,12 +25,13 @@ import { CompanyService } from './company/company.service';
 
 // Graph
 import { GlobGraphComponent } from './graph/graph.component';
+import { GraphService } from './graph/graph.service';
 import { D3Service, D3_DIRECTIVES } from './graph/d3';
 
 import { GraphComponent } from './graph/visuals/graph/graph.component';
 import { SHARED_VISUALS } from './graph/visuals/shared';
 
-import { BarChartComponent } from './graph/BarChart/bar-chart.component';
+import { SimpleVerticalBarChart } from './graph/SimpleVerticalBarChart/bar-chart.component';
 import { SmallStepComponent } from './graph/smallstep/smallstep.component';
 
 
@@ -54,7 +55,7 @@ import { SmallStepComponent } from './graph/smallstep/smallstep.component';
     GlobGraphComponent,
     ...SHARED_VISUALS,
     ...D3_DIRECTIVES,
-    BarChartComponent,
+    SimpleVerticalBarChart,
     SmallStepComponent
   ],
   providers: [
@@ -64,6 +65,7 @@ import { SmallStepComponent } from './graph/smallstep/smallstep.component';
     CompanyService,
     AppSettings,
     D3Service,
+    GraphService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [ NgbdModalContent ]

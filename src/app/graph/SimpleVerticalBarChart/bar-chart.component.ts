@@ -2,12 +2,12 @@ import { Component, OnInit, OnChanges, ViewChild, ElementRef, Input, ViewEncapsu
 import * as d3 from 'd3';
 
 @Component({
-  selector: 'app-bar-chart',
+  selector: 'vertical-bar-chart',
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class BarChartComponent implements OnInit, OnChanges {
+export class SimpleVerticalBarChart implements OnInit, OnChanges {
   @ViewChild('chart') private chartContainer: ElementRef;
   @Input() private data: Array<any>;
   private margin: any = { top: 20, bottom: 20, left: 20, right: 20};

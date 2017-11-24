@@ -2,7 +2,7 @@
   <h1>Graph will go here</h1>
 </div>
 <h3>Bar Chart</h3>
-<small-step [data]="smallStepGraph"></small-step>
-<!-- <app-bar-chart *ngIf="chartData" [data]="chartData"></app-bar-chart> -->
+<small-step *ngIf="smallStepGraph" [data]="smallStepGraph"></small-step>
+<vertical-bar-chart *ngIf="chartData" [data]="chartData"></vertical-bar-chart>
 <!-- <graph [nodes]="nodes" [links]="links"></graph> -->
 <!-- <map [country]="country"></map> -->
