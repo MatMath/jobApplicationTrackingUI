@@ -56,3 +56,13 @@ export class userParamStructure {
   website: string[];
   title: string[];
 }
+
+export class barCharData {
+  name:string;
+  value:number;
+}
+
+export class titleListForGraph {
+  _id: string;
+  count: number
+}

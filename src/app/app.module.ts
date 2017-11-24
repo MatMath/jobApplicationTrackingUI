@@ -23,7 +23,14 @@ import { JobListService } from './joblist/joblist.service';
 import { CompanyComponent } from './company/company.component';
 import { CompanyService } from './company/company.service';
 
-import { GraphComponent } from './graph/graph.component';
+// Graph
+import { GlobGraphComponent } from './graph/graph.component';
+import { GraphService } from './graph/graph.service';
+import { D3Service, D3_DIRECTIVES } from './graph/d3';
+
+import { SmallStepComponent } from './graph/smallstep/smallstep.component';
+import { SimpleHoriBarChart } from './graph/SimpleHoriBarChart/bar-chart.component';
+
 
 @NgModule({
   imports: [
@@ -41,7 +48,10 @@ import { GraphComponent } from './graph/graph.component';
     JobListComponent,
     CompanyComponent,
     NgbdModalContent,
-    GraphComponent,
+    GlobGraphComponent,
+    ...D3_DIRECTIVES,
+    SmallStepComponent,
+    SimpleHoriBarChart,
   ],
   providers: [
     DashboardService,
@@ -49,6 +59,8 @@ import { GraphComponent } from './graph/graph.component';
     GenericService,
     CompanyService,
     AppSettings,
+    D3Service,
+    GraphService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [ NgbdModalContent ]
