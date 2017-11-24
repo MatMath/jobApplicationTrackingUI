@@ -34,6 +34,8 @@ import { SHARED_VISUALS } from './graph/visuals/shared';
 import { SimpleVerticalBarChart } from './graph/SimpleVerticalBarChart/bar-chart.component';
 import { SmallStepComponent } from './graph/smallstep/smallstep.component';
 
+import { SimpleHoriBarChart } from './graph/SimpleHoriBarChart/bar-chart.component';
+
 
 @NgModule({
   imports: [
@@ -56,7 +58,8 @@ import { SmallStepComponent } from './graph/smallstep/smallstep.component';
     ...SHARED_VISUALS,
     ...D3_DIRECTIVES,
     SimpleVerticalBarChart,
-    SmallStepComponent
+    SmallStepComponent,
+    SimpleHoriBarChart,
   ],
   providers: [
     DashboardService,
