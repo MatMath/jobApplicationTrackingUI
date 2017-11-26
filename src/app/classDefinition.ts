@@ -5,6 +5,7 @@ export class CompanySchema {
   gps: gps;
   contact: string;
   link: string;
+  show?: boolean; // only for the UI, not from the DB
 };
 
 export class gps {
@@ -23,6 +24,7 @@ export class RecruitersInfoSchema {
   cie: string;
   name: string;
   notes: string;
+  show?: boolean; // only for the UI, not from the DB
 };
 
 export class MeetingInfoSchema {

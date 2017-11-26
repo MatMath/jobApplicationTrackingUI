@@ -117,6 +117,7 @@ export class CompanyComponent implements OnInit {
     this.submitting = true;
     const pleaseWait = this.notification.success( 'Saving', '');
     this.activeCie.gps.properties.name = this.activeCie.name;
+    delete this.activeCie.show; // Clean the show object that was added
     this.companyService.saveCie(this.activeCie)
       .then(data => {
         if (!this.activeCie._id) {
@@ -160,6 +161,7 @@ export class CompanyComponent implements OnInit {
   submitRecru():void {
     this.submitting = true;
     const pleaseWait = this.notification.success( 'Saving', '');
+    delete this.activeRecruters.show; // Clean the show object that was added and the DB do not want (except if we want to make it persistent).
     this.companyService.saveRecru(this.activeRecruters)
       .then(data => {
         if (!this.activeRecruters._id) {
