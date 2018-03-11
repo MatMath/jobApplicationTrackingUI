@@ -3,12 +3,13 @@ import { CompanyComponent } from './company.component';
 
 describe('Company.component', () => {
   let ctrl: CompanyComponent;
+  const notificationServiceSpy = jasmine.createSpyObj('NotificationsService', ['error', 'remove', 'success']);
+  const genericServiceSpy = jasmine.createSpyObj('GenericService', ['getCompanyList', 'getRecrutersList']);
+  const companyServiceSpy = jasmine.createSpyObj('CompanyService', ['deleteCieId', 'saveCie', 'deleteRecruId', 'saveRecru']);
+  const ngbModalSpy = jasmine.createSpyObj('NgbModal', ['open']);
 
   beforeEach(() => {
-    const notificationServiceSpy = jasmine.createSpyObj('NotificationsService', ['error', 'remove', 'success']);
-    const genericServiceSpy = jasmine.createSpyObj('GenericService', ['getCompanyList', 'getRecrutersList']);
-    const companyServiceSpy = jasmine.createSpyObj('CompanyService', ['deleteCieId', 'saveCie', 'deleteRecruId', 'saveRecru']);
-    const ngbModalSpy = jasmine.createSpyObj('NgbModal', ['open']);
+    companyServiceSpy.deleteCieId.and.returnValue(Promise.resolve('good'));
     ctrl = new CompanyComponent(notificationServiceSpy, genericServiceSpy, companyServiceSpy, ngbModalSpy);
   })
 
@@ -41,5 +42,13 @@ describe('Company.component', () => {
     ctrl.activeRecruters.name = 'Marvel';
     expect(ctrl.activeCie).not.toEqual(ctrl.emptyCie, 'Default Cie');
     expect(ctrl.activeRecruters).not.toEqual(ctrl.emptyRecruters, 'Default Recruters');
-  })
+  });
+
+  it('#deleteCieId', () => {
+    ctrl.activeCie.location = 'NYC';
+    ctrl.deleteCieId(42);
+    expect(companyServiceSpy.deleteCieId).toHaveBeenCalledWith(42);
+    expect(ctrl.activeCie).toEqual(ctrl.emptyCie, 'reset the Cie');
+  });
+
 });
