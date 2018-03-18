@@ -19,6 +19,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { JobListComponent } from './joblist/joblist.component';
 import { JobListService } from './joblist/joblist.service';
+import { JobListPipe } from './joblist/joblist.pipe';
 
 import { CompanyComponent } from './company/company.component';
 import { CompanyService } from './company/company.service';
@@ -52,6 +53,7 @@ import { SimpleHoriBarChart } from './graph/SimpleHoriBarChart/bar-chart.compone
     ...D3_DIRECTIVES,
     SmallStepComponent,
     SimpleHoriBarChart,
+    JobListPipe,
   ],
   providers: [
     DashboardService,

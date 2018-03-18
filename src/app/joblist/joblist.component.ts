@@ -3,9 +3,12 @@ import { Router, Routes } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationsService } from 'angular2-notifications';
 
-import { globalStructureSchema } from '../classDefinition';
+// Custom
 import { JobListService } from './joblist.service';
 import { NgbdModalContent } from '../generic/confirmModal';
+
+// Types Definition
+import { globalStructureSchema } from '../classDefinition';
 
 @Component({
   selector: 'my-joblist',
@@ -15,6 +18,7 @@ import { NgbdModalContent } from '../generic/confirmModal';
 export class JobListComponent implements OnInit {
   jobList: globalStructureSchema[];
   error: any;
+  filterBy: string;
 
   // Pagination param
   collectionSize: number;
