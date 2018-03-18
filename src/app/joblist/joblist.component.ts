@@ -18,7 +18,11 @@ import { globalStructureSchema } from '../classDefinition';
 export class JobListComponent implements OnInit {
   jobList: globalStructureSchema[];
   error: any;
+
+  // sortingParam
   filterBy: string;
+  orderBy: string = '';
+  orderOrder: boolean = false;
 
   // Pagination param
   collectionSize: number;
@@ -77,6 +81,21 @@ export class JobListComponent implements OnInit {
 
   private removeIdFromList = (list:globalStructureSchema[], id:string):globalStructureSchema[] => list.filter(item => (item._id !== id))
 
+  orderListBy(name:'company'|'recruiters'|'title'|'answer_receive') {
+    if (this.orderBy === name) {
+      this.orderOrder = !this.orderOrder;
+      this.jobList = this.jobList.reverse();
+    } else {
+      this.orderOrder = false;
+      this.orderBy = name;
+      this.jobList = this.jobList.sort((a,b) => {
+        if (a[name] > b[name]) { return 1; }
+        if (a[name] < b[name]) { return -1; }
+        return 0;
+      });
+    }
+
+  }
 
   switchPageTo(nbr:number):void {
     this.fromNbr = (nbr - 1)*this.pageSize;
