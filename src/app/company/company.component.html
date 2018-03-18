@@ -5,7 +5,13 @@
     <div class="col-md-11 col-9"> <h3>Company list - <span *ngIf="companyList">{{companyList.length}}</span></h3> </div>
   </div>
   <br />
-  <div class="row oddColor" *ngFor='let cie of companyList; let i = index'>
+  <input type="text" [(ngModel)]="filterBy" placeholder="Filter By">
+  <br />
+  <div class="row tableHeader">
+    <div class="col-4" (click)="orderListBy('name')"> Name <sorting-order comparable="name" [orderby]="orderBy" [order]="orderOrder"></sorting-order> </div>
+    <div class="col-8" (click)="orderListBy('location')"> Location <sorting-order comparable="location" [orderby]="orderBy" [order]="orderOrder"></sorting-order> </div>
+  </div>
+  <div class="row oddColor" *ngFor='let cie of companyList | cieListPipe:filterBy ; let i = index'>
     <div class="col-4" (click)="cie.show = !cie.show">
         <i class="text-success fa fa-map-marker" *ngIf="cie.gps.geometry.coordinates[0] !== 0"></i>
         {{cie.name}}
@@ -23,7 +29,12 @@
     <div class="col-md-11 col-9"><h3>Recruiters list - <span *ngIf="RecrutersList">{{RecrutersList.length}}</span></h3></div>
   </div>
   <br />
-  <div class="row oddColor" *ngFor='let item of RecrutersList'>
+  <input type="text" [(ngModel)]="filterBy" placeholder="Filter By">
+  <div class="row tableHeader">
+    <div class="col-4"> Company </div>
+    <div class="col-8"> Agent </div>
+  </div>
+  <div class="row oddColor" *ngFor='let item of RecrutersList | recruListPipe:filterBy'>
     <div class="col-4" (click)="item.show = !item.show"> {{item.cie}} </div>
     <div class="col-8" (click)="item.show = !item.show">{{item.name}} </div>
     <div class="col-12" *ngIf="item.show">

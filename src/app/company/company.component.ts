@@ -48,6 +48,12 @@ export class CompanyComponent implements OnInit {
   showRecruters:boolean = false;
   showList:boolean = true;
   submitting:boolean = false;
+
+  // sortingParam
+  filterBy: string;
+  orderBy: string = '';
+  orderOrder: boolean = false;
+
   public options = {
     position: ["top", "left"],
     timeOut: 0,
@@ -177,6 +183,21 @@ export class CompanyComponent implements OnInit {
         this.notification.error( 'Error', 'Submitting the data');
         this.submitting = false;
       });
+  }
+
+  orderListBy(name:'name'|'location') {
+    if (this.orderBy === name) {
+      this.orderOrder = !this.orderOrder;
+      this.companyList = this.companyList.reverse();
+    } else {
+      this.orderOrder = false;
+      this.orderBy = name;
+      this.companyList = this.companyList.sort((a,b) => {
+        if (a[name] > b[name]) { return 1; }
+        if (a[name] < b[name]) { return -1; }
+        return 0;
+      });
+    }
   }
 
 }

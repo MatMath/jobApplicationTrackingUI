@@ -12,8 +12,7 @@ export class JobListPipe implements PipeTransform {
         if (job.recruiters && job.recruiters.match(strTest) !== null) { return true;}
         if (job.title && job.title.match(strTest) !== null) { return true;}
         return false;
-      }
-      );
+      });
       return filteredValue;
     }
     return jobList;

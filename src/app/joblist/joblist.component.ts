@@ -94,7 +94,6 @@ export class JobListComponent implements OnInit {
         return 0;
       });
     }
-
   }
 
   switchPageTo(nbr:number):void {

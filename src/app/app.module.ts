@@ -23,6 +23,7 @@ import { JobListPipe } from './joblist/joblist.pipe';
 
 import { CompanyComponent } from './company/company.component';
 import { CompanyService } from './company/company.service';
+import { CieListPipe, RecrutersListPipe } from './company/cielist.pipe';
 
 import { SortingOrder } from './generic/sortOrder.component';
 
@@ -55,8 +56,10 @@ import { SimpleHoriBarChart } from './graph/SimpleHoriBarChart/bar-chart.compone
     ...D3_DIRECTIVES,
     SmallStepComponent,
     SimpleHoriBarChart,
-    JobListPipe,
     SortingOrder,
+    JobListPipe,
+    CieListPipe,
+    RecrutersListPipe,
   ],
   providers: [
     DashboardService,
