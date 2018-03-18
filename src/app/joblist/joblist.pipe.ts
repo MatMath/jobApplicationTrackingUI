@@ -5,13 +5,12 @@ import { globalStructureSchema } from '../classDefinition';
 @Pipe({ name: 'jobListPipe' })
 export class JobListPipe implements PipeTransform {
   transform(jobList: globalStructureSchema[], filter: string) {
-    const strTest = filter.toLowerCase();
-    if(jobList && jobList.length > 0 && strTest) {
+    if(jobList && jobList.length > 0 && filter) {
+      const strTest = new RegExp(filter.toLowerCase(), 'i');
       const filteredValue = jobList.filter(job => {
-        // TODO: Make it smarter (case insensitive, sparse search?) 
-        if (job.company && job.company.indexOf(strTest) > -1) { return true; }
-        if (job.recruiters && job.recruiters.indexOf(strTest) > -1) { return true;}
-        if (job.title && job.title.indexOf(strTest) > -1) { return true;}
+        if (job.company && job.company.match(strTest) !== null) { return true; }
+        if (job.recruiters && job.recruiters.match(strTest) !== null) { return true;}
+        if (job.title && job.title.match(strTest) !== null) { return true;}
         return false;
       }
       );
