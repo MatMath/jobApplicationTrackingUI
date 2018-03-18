@@ -24,6 +24,8 @@ import { JobListPipe } from './joblist/joblist.pipe';
 import { CompanyComponent } from './company/company.component';
 import { CompanyService } from './company/company.service';
 
+import { SortingOrder } from './generic/sortOrder.component';
+
 // Graph
 import { GlobGraphComponent } from './graph/graph.component';
 import { GraphService } from './graph/graph.service';
@@ -54,6 +56,7 @@ import { SimpleHoriBarChart } from './graph/SimpleHoriBarChart/bar-chart.compone
     SmallStepComponent,
     SimpleHoriBarChart,
     JobListPipe,
+    SortingOrder,
   ],
   providers: [
     DashboardService,

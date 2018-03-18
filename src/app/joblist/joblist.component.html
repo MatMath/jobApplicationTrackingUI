@@ -2,24 +2,16 @@
 <input type="text" [(ngModel)]="filterBy" placeholder="Filter By">
 <div class="row tableHeader">
   <div class="col-md-2 col-6" (click)="orderListBy('answer_receive')"> Options
-    <i class="fa fa-arrows-v" *ngIf="orderBy !== 'answer_receive'"></i>
-    <i class="fa fa-arrow-down" *ngIf="orderBy === 'answer_receive' && orderOrder"></i>
-    <i class="fa fa-arrow-up" *ngIf="orderBy === 'answer_receive' && !orderOrder"></i>
+    <sorting-order comparable="answer_receive" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
   </div>
   <div class="col-md-3 col-6" (click)="orderListBy('company')"> Cie
-    <i class="fa fa-arrows-v" *ngIf="orderBy !== 'company'"></i>
-    <i class="fa fa-arrow-down" *ngIf="orderBy === 'company' && orderOrder"></i>
-    <i class="fa fa-arrow-up" *ngIf="orderBy === 'company' && !orderOrder"></i>
+    <sorting-order comparable="company" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
   </div>
   <div class="col-md-3 col-6" (click)="orderListBy('recruiters')"> Recruiters
-    <i class="fa fa-arrows-v" *ngIf="orderBy !== 'recruiters'"></i>
-    <i class="fa fa-arrow-down" *ngIf="orderBy === 'recruiters' && orderOrder"></i>
-    <i class="fa fa-arrow-up" *ngIf="orderBy === 'recruiters' && !orderOrder"></i>
+    <sorting-order comparable="recruiters" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
   </div>
   <div class="col-md-4 col-6" (click)="orderListBy('title')"> Title
-    <i class="fa fa-arrows-v" *ngIf="orderBy !== 'title'"></i>
-    <i class="fa fa-arrow-down" *ngIf="orderBy === 'title' && orderOrder"></i>
-    <i class="fa fa-arrow-up" *ngIf="orderBy === 'title' && !orderOrder"></i>
+    <sorting-order comparable="title" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
   </div>
 </div>
 <div class="row"
