@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { titleListForGraph } from '../classDefinition';
+import { titleListForGraph, websiteWeight } from '../classDefinition';
 import { AppSettings } from '../config';
 
 @Injectable()
@@ -16,6 +16,14 @@ export class GraphService {
   getTitleWeight(): Promise<Array<titleListForGraph>> {
     return this.http
       .get(`${this.baseUrl}/analytic/title`)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  getWebsiteWeight(): Promise<Array<websiteWeight>> {
+    return this.http
+      .get(`${this.baseUrl}/analytic/successrate`)
       .toPromise()
       .then(response => response)
       .catch(this.handleError);

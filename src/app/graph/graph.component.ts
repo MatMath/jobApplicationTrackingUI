@@ -3,7 +3,7 @@ import APP_CONFIG from './graph.config';
 import { Node, Link } from './d3';
 import { NotificationsService } from 'angular2-notifications';
 
-import { barCharData } from '../classDefinition';
+import { barCharData, websiteWeight } from '../classDefinition';
 import { GraphService } from './graph.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class GlobGraphComponent implements OnInit{
   nodes: Node[] = [];
   links: Link[] = [];
   smallStepGraph: barCharData[];
+  websiteWeight: websiteWeight[];
 
   constructor(
     private graphService: GraphService,
@@ -43,5 +44,9 @@ export class GlobGraphComponent implements OnInit{
     this.graphService.getTitleWeight().then(data => {
       this.smallStepGraph = data.map(item => ({name: item._id, value: item.count}));
     }).catch(() => this.notification.error( 'Error', 'Gerring the Title info'));
+
+    this.graphService.getWebsiteWeight().then(data => {
+      this.websiteWeight = data;
+    }).catch(() => this.notification.error( 'Error', 'Gerring the Website Weight info'));
   }
 }

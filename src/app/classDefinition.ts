@@ -68,3 +68,9 @@ export class titleListForGraph {
   _id: string;
   count: number
 }
+
+export class websiteWeight {
+  _id: string;
+  total: number;
+  success: number;
+}
