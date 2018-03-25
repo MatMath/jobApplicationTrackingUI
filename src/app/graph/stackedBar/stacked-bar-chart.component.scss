@@ -1,0 +1,27 @@
+$successColor: green;
+$totalColor: pink;
+
+.stackchart {
+  .total{
+    fill: $totalColor;
+    &:hover {
+      fill: darken($totalColor,20%);
+    }
+  },
+  .success{
+    fill: $successColor;
+    &:hover {
+      fill: darken($successColor,20%);
+    }
+  },
+  text {
+    fill: white;
+    font: 11px Arial;
+    text-anchor: end;
+  },
+  .bartext {
+    fill: black;
+    font: 11px Arial;
+    text-anchor: start;
+  }
+}

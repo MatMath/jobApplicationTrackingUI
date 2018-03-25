@@ -64,6 +64,11 @@ export class barCharData {
   value:number;
 }
 
+export class stackedBarCharData {
+  name:string;
+  value:number[]; // First being the biggest?
+}
+
 export class titleListForGraph {
   _id: string;
   count: number

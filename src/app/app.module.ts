@@ -34,6 +34,7 @@ import { D3Service, D3_DIRECTIVES } from './graph/d3';
 
 import { SmallStepComponent } from './graph/smallstep/smallstep.component';
 import { SimpleHoriBarChart } from './graph/SimpleHoriBarChart/bar-chart.component';
+import { StackedHoriBarChart } from './graph/stackedBar/stacked-bar-chart.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { SimpleHoriBarChart } from './graph/SimpleHoriBarChart/bar-chart.compone
     ...D3_DIRECTIVES,
     SmallStepComponent,
     SimpleHoriBarChart,
+    StackedHoriBarChart,
     SortingOrder,
     JobListPipe,
     CieListPipe,

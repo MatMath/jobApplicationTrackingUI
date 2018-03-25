@@ -1,3 +1,6 @@
 <h3>Type of position applied</h3>
 <horizontal-bar-chart *ngIf="smallStepGraph" [data]="smallStepGraph"></horizontal-bar-chart>
 <!-- <small-step *ngIf="smallStepGraph" [data]="smallStepGraph"></small-step> -->
+<br />
+<stacked-horizontal-bar-chart *ngIf="websiteWeight" [data]="websiteWeight"></stacked-horizontal-bar-chart>
+<pre>Weight: {{websiteWeight | json}}</pre>
