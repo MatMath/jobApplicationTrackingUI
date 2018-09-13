@@ -23,7 +23,7 @@ export class GraphService {
 
   getWebsiteWeight(): Promise<Array<websiteWeight>> {
     return this.http
-      .get(`${this.baseUrl}/analytic/successrate`)
+      .get(`${this.baseUrl}/analytic/website`)
       .toPromise()
       .then(response => response)
       .catch(this.handleError);

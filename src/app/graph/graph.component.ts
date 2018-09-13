@@ -48,7 +48,7 @@ export class GlobGraphComponent implements OnInit{
     this.graphService.getWebsiteWeight().then(data => {
       this.websiteWeight = data.map(item => ({
         name: item._id,
-        value: [item.total, item.success]
+        value: [item.count, item.answer_receive]
       }));
     }).catch(() => this.notification.error( 'Error', 'Gerring the Website Weight info'));
   }

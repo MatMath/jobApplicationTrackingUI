@@ -76,6 +76,6 @@ export class titleListForGraph {
 
 export class websiteWeight {
   _id: string;
-  total: number;
-  success: number;
+  count: number;
+  answer_receive: number;
 }
