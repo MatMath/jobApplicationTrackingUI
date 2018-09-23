@@ -105,14 +105,13 @@
     </div>
 
     <div class="form-group row">
-      <label class="label-columns col-form-label" for="name">Did you apply</label>
+      <label class="label-columns col-form-label" for="name" placement="bottom" ngbTooltip="This is mainly if we have a recruters proposing different cie.">Did you apply</label>
       <div class="btn-group label-columns" ngbRadioGroup name="apply" [(ngModel)]="base.application">
         <label ngbButtonLabel class="btn btn-secondary" [ngClass]="{'btn-success': base.application}">
           <input ngbButton type="radio" [value]="true"> Yes
         </label>
         <label ngbButtonLabel class="btn btn-secondary" [ngClass]="{'btn-danger': !base.application}"> <input ngbButton type="radio" [value]="false"> No </label>
       </div>
-      <div class="col-12">Note: This is mainly if we have a recruters proposing different cie.</div>
     </div>
 
     <div class="form-group row" *ngIf='base.application'>
@@ -180,7 +179,7 @@
       </div>
 
       <div class="row" *ngIf="base.offer === 'Yes'">
-        <label class="label-columns col-form-label" for="name">Received an Accept/Reject?</label>
+        <label class="label-columns col-form-label" for="name">Accepted / Rejected the offer?</label>
         <div class="btn-group label-columns" ngbRadioGroup name="apply" [(ngModel)]="base.acceptedOffer">
           <label ngbButtonLabel class="btn btn-secondary" [ngClass]="{'btn-success': base.acceptedOffer}"> <input ngbButton type="radio" [value]="true"> Yes </label>
           <label ngbButtonLabel class="btn btn-secondary" [ngClass]="{'btn-danger': !base.acceptedOffer}"> <input ngbButton type="radio" [value]="false"> Refused </label>
