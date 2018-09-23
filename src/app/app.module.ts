@@ -30,7 +30,7 @@ import { SortingOrder } from './generic/sortOrder.component';
 // Graph
 import { GlobGraphComponent } from './graph/graph.component';
 import { GraphService } from './graph/graph.service';
-
+import { BarChart } from './graph/barChart/barChartComponent';
 
 @NgModule({
   imports: [
@@ -49,6 +49,7 @@ import { GraphService } from './graph/graph.service';
     CompanyComponent,
     NgbdModalContent,
     GlobGraphComponent,
+    BarChart,
     SortingOrder,
     JobListPipe,
     CieListPipe,
