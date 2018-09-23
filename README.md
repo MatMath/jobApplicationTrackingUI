@@ -14,5 +14,4 @@ Use the `-prod` flag for a production build.
 Move the dist folder to the backend dist folder so it can be serve & secured.
 
 ### Graph:
-I don't know D3 really so I had a structure dot-link-force tutorial from: https://github.com/lsharir/angular-d3-graph-example
-Also added a simpler BarGraph from: https://github.com/keathmilligan/angular-d3js
+I tried D3 directly but it is way too much trouble to build simple Line/Bar/Scatter/Geo graph. So I will move to a wrapper on top called Rickshaw.

@@ -30,11 +30,6 @@ import { SortingOrder } from './generic/sortOrder.component';
 // Graph
 import { GlobGraphComponent } from './graph/graph.component';
 import { GraphService } from './graph/graph.service';
-import { D3Service, D3_DIRECTIVES } from './graph/d3';
-
-import { SmallStepComponent } from './graph/smallstep/smallstep.component';
-import { SimpleHoriBarChart } from './graph/SimpleHoriBarChart/bar-chart.component';
-import { StackedHoriBarChart } from './graph/stackedBar/stacked-bar-chart.component';
 
 
 @NgModule({
@@ -54,10 +49,6 @@ import { StackedHoriBarChart } from './graph/stackedBar/stacked-bar-chart.compon
     CompanyComponent,
     NgbdModalContent,
     GlobGraphComponent,
-    ...D3_DIRECTIVES,
-    SmallStepComponent,
-    SimpleHoriBarChart,
-    StackedHoriBarChart,
     SortingOrder,
     JobListPipe,
     CieListPipe,
@@ -69,7 +60,6 @@ import { StackedHoriBarChart } from './graph/stackedBar/stacked-bar-chart.compon
     GenericService,
     CompanyService,
     AppSettings,
-    D3Service,
     GraphService,
   ],
   bootstrap: [AppComponent],
