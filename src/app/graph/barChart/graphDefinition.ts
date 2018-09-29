@@ -3,6 +3,6 @@ export class xyObj {
   y: number;
 }
 export class GraphSchema {
-  color: string;
+  color?: string;
   data: xyObj[];
 }

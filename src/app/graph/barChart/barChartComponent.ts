@@ -12,10 +12,14 @@ export class BarChart implements OnInit{
   @Input() private series: GraphSchema[];
 
   ngOnInit() {
-    if (!this.series) {
-      console.log('FUCK IT')
-      return;
-    }
+    const palette = new Rickshaw.Color.Palette({ scheme: 'cool' });
+    if (!this.series) { return; }
+    this.series = this.series.map((serie, i) => {
+      if (!serie.color) {
+        serie.color = palette.color();
+      }
+      return serie;
+    })
     const graph = new Rickshaw.Graph( {
       renderer: 'bar',
       element: document.querySelector('#myRick'),
