@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
-// import { barCharData } from '../classDefinition';
+import { GraphSchema } from './graphDefinition';
 
 import * as Rickshaw from 'rickshaw';
 
@@ -8,22 +8,18 @@ import * as Rickshaw from 'rickshaw';
   selector: 'bar-chart',
   template: '<div id="myRick"></div>'
 })
-export class BarChart {
-  constructor(){}
+export class BarChart implements OnInit{
+  @Input() private series: GraphSchema[];
 
   ngOnInit() {
+    if (!this.series) {
+      console.log('FUCK IT')
+      return;
+    }
     const graph = new Rickshaw.Graph( {
       renderer: 'bar',
       element: document.querySelector('#myRick'),
-      series: [
-        {
-          color: 'steelblue',
-          data: [ { x: 0, y: 23}, { x: 1, y: 15 }, { x: 2, y: 79 } ]
-        }, {
-          color: 'lightblue',
-          data: [ { x: 0, y: 30}, { x: 1, y: 20 }, { x: 2, y: 64 } ]
-        }
-      ]
+      series: this.series
     } );
 
     graph.render();
