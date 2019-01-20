@@ -25,6 +25,7 @@ export class GlobGraphComponent implements OnInit{
     // give everything a chance to get loaded before starting the animation to reduce choppiness
     this.graphService.getTitleWeight().then(data => {
       this.rickSerieStructure = [{
+        color: 'steelblue',
         data: data.map((item, index) => ({x: index + 1, y: item.count}))
       }];
     }).catch(() => this.notification.error( 'Error', 'Gerring the Title info'));

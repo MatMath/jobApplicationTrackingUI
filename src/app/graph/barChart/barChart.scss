@@ -1,0 +1,35 @@
+#chart {
+	position: relative;
+	left: 40px;
+	display: inline-block;
+}
+#y_axis {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 40px;
+}
+#x_axis {
+	position: relative;
+  background-color: pink;
+  color: pink;
+	left: 40px;
+	height: 40px;
+}
+
+#legend {
+	display: inline-block;
+	position: relative;
+	left: 8px;
+}
+#legend_container {
+	position: absolute;
+	right: 0;
+	bottom: 26px;
+	width: 0;
+}
+#rickshaw_container {
+	width: 100%;
+	float: left;
+	position: relative;
+}
