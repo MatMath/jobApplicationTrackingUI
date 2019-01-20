@@ -7,10 +7,13 @@
   <div class="col-md-3 col-6" (click)="orderListBy('company')"> Cie
     <sorting-order comparable="company" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
   </div>
-  <div class="col-md-3 col-6" (click)="orderListBy('recruiters')"> Recruiters
+  <div class="col-md-3 col-5" (click)="orderListBy('recruiters')"> Recruiters
     <sorting-order comparable="recruiters" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
   </div>
-  <div class="col-md-4 col-6" (click)="orderListBy('title')"> Title
+  <div class="col-md-3 col-5" (click)="orderListBy('title')"> Title
+    <sorting-order comparable="title" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
+  </div>
+  <div class="col-md-1 col-2" (click)="orderListBy('title')"> Date
     <sorting-order comparable="title" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
   </div>
 </div>
@@ -18,15 +21,16 @@
   [ngClass]="{strikeText: job.offer === 'Rejected', oddColor: job.offer !== 'Rejected'}"
   *ngFor="let job of jobList | jobListPipe:filterBy | slice:fromNbr:toNbr">
   <div class="col-md-2 col-6" (click)="job.show = !job.show">
-    <i class="text-success fa fa-check" *ngIf="job.application"></i>
-    <i class="text-danger fa fa-ban" *ngIf="!job.application"></i>
-    <i class="text-success fa fa-commenting" *ngIf="job.answer_receive"></i>
+    <i class="text-success fas fa-check" *ngIf="job.application"></i>
+    <i class="text-danger fas fa-ban" *ngIf="!job.application"></i>
+    <i class="text-success fas fa-comments" *ngIf="job.answer_receive"></i>
     <span *ngIf="job.answer_receive">{{job.meeting.length}}</span>
-    <i class="text-danger fa fa-commenting" *ngIf="!job.answer_receive"></i>
+    <i class="text-danger far fa-comment" *ngIf="!job.answer_receive"></i>
   </div>
   <div class="col-md-3 col-6" (click)="job.show = !job.show"> {{job.company}} </div>
   <div class="col-md-3 col-6"> {{job.recruiters}} </div>
-  <div class="col-md-4 col-6"> {{job.title}} </div>
+  <div class="col-md-3 col-6"> {{job.title}} </div>
+  <div class="col-md-1 col-6"> {{job.date}} </div>
   <div class="col-12" *ngIf="job.show"> {{job.location}} </div>
   <div class="col-12" *ngIf="job.show">
     <button class="btn btn-danger" (click)="confirmDelete(job)">Delete</button>

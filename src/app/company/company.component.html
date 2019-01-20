@@ -13,7 +13,7 @@
   </div>
   <div class="row oddColor" *ngFor='let cie of companyList | cieListPipe:filterBy ; let i = index'>
     <div class="col-4" (click)="cie.show = !cie.show">
-        <i class="text-success fa fa-map-marker" *ngIf="cie.gps.geometry.coordinates[0] !== 0"></i>
+        <i class="text-success fas fa-map-marker" *ngIf="cie.gps.geometry.coordinates[0] !== 0"></i>
         {{cie.name}}
     </div>
     <div class="col-8" (click)="cie.show = !cie.show">{{cie.location}} </div>
