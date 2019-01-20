@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
 
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
+import { Observable } from 'rxjs';
+import { debounceTime, map, distinctUntilChanged } from 'rxjs/operators';
 
 import { CompanySchema, globalStructureSchema, RecruitersInfoSchema, MeetingInfoSchema } from '../classDefinition';
 import { DashboardService } from './dashboard.service';
@@ -123,24 +121,24 @@ export class DashboardComponent implements OnInit {
 
   listPosition = (text$: Observable<string>) =>
     text$
-      .debounceTime(100)
-      .distinctUntilChanged()
-      .map(term => term.length < 1 ? []
-        : this.typeOfPosition.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+      .pipe(debounceTime(100))
+      .pipe(distinctUntilChanged())
+      .pipe(map(term => term.length < 1 ? []
+        : this.typeOfPosition.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)));
 
   listWebsites = (text$: Observable<string>) =>
     text$
-      .debounceTime(100)
-      .distinctUntilChanged()
-      .map(term => term.length < 1 ? []
-        : this.websiteList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+      .pipe(debounceTime(100))
+      .pipe(distinctUntilChanged())
+      .pipe(map(term => term.length < 1 ? []
+        : this.websiteList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)));
 
   listCie = (text$: Observable<string>) =>
     text$
-      .debounceTime(100)
-      .distinctUntilChanged()
-      .map(term => term.length < 1 ? []
-          : this.companyNameList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+      .pipe(debounceTime(100))
+      .pipe(distinctUntilChanged())
+      .pipe(map(term => term.length < 1 ? []
+          : this.companyNameList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)));
 
   toggleCie():void {
     this.newCie = !this.newCie;
