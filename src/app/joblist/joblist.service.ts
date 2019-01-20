@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import 'rxjs/add/operator/toPromise';
-
 import { globalStructureSchema } from '../classDefinition';
 import { AppSettings } from '../config';
 
