@@ -1,36 +1,36 @@
 <h2>My Job list - <span *ngIf="jobList">{{jobList.length}}</span></h2>
 <input type="text" [(ngModel)]="filterBy" placeholder="Filter By">
 <div class="row tableHeader">
-  <div class="col-md-2 col-6" (click)="orderListBy('answer_receive')"> Options
-    <sorting-order comparable="answer_receive" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
+  <div class="col-md-2 col-5" (click)="orderListBy('answer_receive')"> Options
+    <sorting-order id="options" comparable="answer_receive" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
   </div>
-  <div class="col-md-3 col-6" (click)="orderListBy('company')"> Cie
-    <sorting-order comparable="company" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
+  <div class="col-md-3 col-7" (click)="orderListBy('company')"> Cie
+    <sorting-order id="cie" comparable="company" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
   </div>
   <div class="col-md-3 col-5" (click)="orderListBy('recruiters')"> Recruiters
-    <sorting-order comparable="recruiters" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
+    <sorting-order id="recruiters" comparable="recruiters" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
   </div>
   <div class="col-md-3 col-5" (click)="orderListBy('title')"> Title
-    <sorting-order comparable="title" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
+    <sorting-order id="title" comparable="title" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
   </div>
-  <div class="col-md-1 col-2" (click)="orderListBy('title')"> Date
-    <sorting-order comparable="title" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
+  <div class="col-md-1 col-2" (click)="orderListBy('date')"> Date
+    <sorting-order id="date" comparable="title" [orderby]="orderBy" [order]="orderOrder"></sorting-order>
   </div>
 </div>
 <div class="row"
   [ngClass]="{strikeText: job.offer === 'Rejected', oddColor: job.offer !== 'Rejected'}"
   *ngFor="let job of jobList | jobListPipe:filterBy | slice:fromNbr:toNbr">
-  <div class="col-md-2 col-6" (click)="job.show = !job.show">
+  <div class="col-md-2 col-5" (click)="job.show = !job.show">
     <i class="text-success fas fa-check" *ngIf="job.application"></i>
     <i class="text-danger fas fa-ban" *ngIf="!job.application"></i>
     <i class="text-success fas fa-comments" *ngIf="job.answer_receive"></i>
     <span *ngIf="job.answer_receive">{{job.meeting.length}}</span>
     <i class="text-danger far fa-comment" *ngIf="!job.answer_receive"></i>
   </div>
-  <div class="col-md-3 col-6" (click)="job.show = !job.show"> {{job.company}} </div>
-  <div class="col-md-3 col-6"> {{job.recruiters}} </div>
-  <div class="col-md-3 col-6"> {{job.title}} </div>
-  <div class="col-md-1 col-6"> {{job.date}} </div>
+  <div class="col-md-3 col-7" (click)="job.show = !job.show"> {{job.company}} </div>
+  <div class="col-md-3 col-5"> {{job.recruiters}} </div>
+  <div class="col-md-3 col-5"> {{job.title}} </div>
+  <div class="col-md-1 col-2"> {{job.fromnow}} </div>
   <div class="col-12" *ngIf="job.show"> {{job.location}} </div>
   <div class="col-12" *ngIf="job.show">
     <button class="btn btn-danger" (click)="confirmDelete(job)">Delete</button>

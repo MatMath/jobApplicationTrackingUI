@@ -81,7 +81,7 @@ export class JobListComponent implements OnInit {
 
   private removeIdFromList = (list:globalStructureSchema[], id:string):globalStructureSchema[] => list.filter(item => (item._id !== id))
 
-  orderListBy(name:'company'|'recruiters'|'title'|'answer_receive') {
+  orderListBy(name:'company'|'recruiters'|'title'|'answer_receive'|'date') {
     if (this.orderBy === name) {
       this.orderOrder = !this.orderOrder;
       this.jobList = this.jobList.reverse();

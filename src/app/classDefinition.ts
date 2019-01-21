@@ -45,6 +45,7 @@ export class globalStructureSchema {
   company: any; // TODO find why it is always undefined if I link them
   description: string;
   date: Date; // Converted number.
+  fromnow?: string;
   application: boolean;
   answer_receive: boolean;
   meeting: MeetingInfoSchema[];

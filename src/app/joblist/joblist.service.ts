@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import * as moment from 'moment';
 
 import { globalStructureSchema } from '../classDefinition';
 import { AppSettings } from '../config';
@@ -15,8 +16,12 @@ export class JobListService {
     return this.http
       .get(this.jobUrl)
       .toPromise()
-      .then((response) => {
-        return response as globalStructureSchema[];
+      .then((response:globalStructureSchema[]) => {
+        let tmp = response.map(item => {
+          item.fromnow = moment(item.date).fromNow();
+          return item;
+        });
+        return tmp as globalStructureSchema[];
       })
       .catch(this.handleError);
   }
