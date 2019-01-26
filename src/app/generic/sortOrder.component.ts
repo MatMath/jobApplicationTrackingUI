@@ -3,9 +3,9 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'sorting-order',
   template: `
-    <i class="fas fa-arrows-alt-v" *ngIf="orderby !== comparable"></i>
-    <i class="fas fa-arrow-down" *ngIf="orderby === comparable && order"></i>
-    <i class="fas fa-arrow-up" *ngIf="orderby === comparable && !order"></i>
+    <span *ngIf="orderby !== comparable"><i class="fas fa-arrows-alt-v"></i></span>
+    <span *ngIf="orderby === comparable && order"><i class="fas fa-arrow-down"></i></span>
+    <span *ngIf="orderby === comparable && !order"><i class="fas fa-arrow-up"></i></span>
   `,
 })
 export class SortingOrder {
